@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t-8 border-gray-950 justify-items-center text-black p-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t-8 border-gray-900 justify-items-center text-black p-4">
       
       <div className="col-span-1 flex flex-col items-center justify-center text-center">
         <strong className="text-orange-500"> Contactenos </strong>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
  function Products({products}) {
   return (
     <main className="bg-gray-50 ">

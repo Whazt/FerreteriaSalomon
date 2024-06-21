@@ -1,7 +1,7 @@
  function Products({products}) {
   return (
     <main className="bg-gray-50 ">
-
+      <span className="text-orange-500 text-xl font-bold"> JEJE </span>
       <ul className="grid grid-cols-1 ipp:justifey-items-center md:grid-cols-2 lg:grid-cols-4 md:m-1 lg:m-10">
         {products.map((product) => (
             <li key={product.id} className="col-span-1 mb-4">

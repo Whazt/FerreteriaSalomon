@@ -1,0 +1,31 @@
+const Footer = () => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t-8 border-gray-950 justify-items-center text-black p-4">
+      
+      <div className="col-span-1 flex flex-col items-center justify-center text-center">
+        <strong className="text-orange-500"> Contactenos </strong>
+        <br />
+        <div className="text-left">
+            <span className="text-orange-500">Teléfono: <span className="text-black"> 2256-7485</span></span>
+            <br />
+            <span className="text-orange-500   ">Correo: <span className="text-black"> salomonferreteria@gmail.com </span></span>
+            <br />
+            <p>Introduzca direccion no me la se xxd</p>
+        </div>
+        
+      </div>
+
+      <div className="col-span-1 text-center">
+        <strong className="text-orange-500"> Redes Sociales </strong>
+      </div>
+
+      <div className="col-span-1 flex flex-col items-center justify-center">
+        <strong className="text-orange-500"> Nosotros </strong>
+        <img src="/salomonlogo.png" alt="Salomon Logo" className="p-2 col-span-1"/>
+      </div>
+
+    </div>
+  );
+};
+
+export default Footer;

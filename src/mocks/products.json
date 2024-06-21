@@ -1,0 +1,104 @@
+ [
+      {
+        "id": "0001",
+        "titulo": "JUEGO DE DESARMADORES HYPER TOUGH 6 PIEZAS",
+        "marca": "HYPER TOUGH",
+        "imagen": "/JuegoDesarmadores.png",
+        "categoria": {
+          "id": "hmanual"
+        },
+        "precio": 300.50
+      },
+      {
+        "id": "0002",
+        "titulo": "ROTOMARTILLO SDS PLUS 4 JOULES 1000W, TRUPER EXPERT",
+        "marca": "TRUPER EXPERT",
+        "imagen": "/RPLUS-4NX.jpg",
+        "categoria": {
+          "id": "helectrica"
+        },
+        "precio": 10525.50
+      },
+      {
+        "id": "0003",
+        "titulo": "CINTA METRICA GLOBAL PLUS 1″X8M 30-626, STANLEY",
+        "marca": "STANLEY",
+        "imagen": "/stanleycinta.jpg",
+        "categoria": {
+          "id": "hmanual"
+        },
+        "precio": 350.50
+      },
+      {
+        "id": "0004",
+        "titulo": "TALADRO ANGULAR 3/8″ 4A 450W DA3010F, MAKITA",
+        "marca": "MAKITA",
+        "imagen": "/granangular.jpg",
+        "categoria": {
+          "id": "helectrica"
+        },
+        "precio": 10734.45
+      },
+      {
+        "id": "0005",
+        "titulo": "SERRUCHO LUCTADOR 22″ 8 DIENTE 15-472, STANLEY",
+        "marca": "STANLEY",
+        "imagen": "/serrucho.jpg",
+        "categoria": {
+          "id": "hmanual"
+        },
+        "precio": 250.00
+      },
+      {
+        "id": "0006",
+        "titulo": "LAVAMANO VENUS BLANCO 1H SOLO LOZA 392600.020, INCESA",
+        "marca": "INCESA",
+        "imagen": "/lavamanos.jpg",
+        "categoria": {
+          "id": "font"
+        },
+        "precio": 1260.50
+      },
+      {
+        "id": "0007",
+        "titulo": "CUCHILLA SNAP-OFF 2PZS (9MM – 18MM) STHT81433-840, STANLEY",
+        "marca": "STANLEY",
+        "imagen": "/cuchilla.jpg",
+        "categoria": {
+          "id": "hmanual"
+        },
+        "precio": 60.00
+      },
+      {
+        "id": "0008",
+        "titulo": "FACHALETA ARENA BRILLO 30X60, RIALTO",
+        "marca": "RIALTO",
+        "imagen": "/fachaleta.jpg",
+        "categoria": {
+          "id": "construccion"
+        },
+        "precio": 420.50
+      },
+      {
+        "id": "0009",
+        "titulo": "PINTURA FAST DRY BLANCO 1GL 10000, MODELO",
+        "marca": "MODELO",
+        "imagen": "/pintura.jpg",
+        "categoria": {
+          "id": "pint"
+        },
+        "precio": 1080.90
+      },
+      {
+        "id": "0010",
+        "titulo": "NIVEL DE RESINA ESTRUCTURAL 12″ 42-466, STANLEY",
+        "marca": "STANLEY",
+        "imagen": "/nivel.jpg",
+        "categoria": {
+          "id": "hmanual"
+        },
+        "precio": 140.50
+      }
+]
+  
+  

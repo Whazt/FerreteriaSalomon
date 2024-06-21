@@ -1,30 +1,43 @@
-/* eslint-disable react/prop-types */
- function Products({products}) {
-  return (
-    <main className="bg-gray-50 ">
+import FiltersOpt from "../components/filtersOpt";
+import ListProducts from "../components/listProducts";
+import {products as initialProducts} from "../mocks/products.json";
+import { useState } from "react";
 
-      <ul className="grid grid-cols-1 ipp:justifey-items-center md:grid-cols-2 lg:grid-cols-4 md:m-1 lg:m-10">
-        {products.map((product) => (
-            <li key={product.id} className="col-span-1 mb-4">
-                <div className="w-full max-w-sm bg-white boder border-t-1 border-gray-800 rounded-lg shadow-xl">
-                    <a href="#" className="">
-                        <img className="py-3 px-6 rounded-t-lg" src={product.imagen} alt="product image" />
-                    </a>
-                    <div className="px-5 pb-5 border-t-2 border-gray-950 ">
-                        <a href="#">
-                            <h5 className="text-xl font-semibold tracking-tight text-gray-900 ">{product.titulo}</h5>
-                        </a>
-                        
-                        <div className="flex items-center justify-between">
-                            <span className="text-3xl font-bold text-gray-900 ">{product.precio}</span>
-                            <a href="#" className="text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Agregar al carrito</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        ))}
-      </ul>
-    </main>
+
+function useFilter() {
+  const [filter, setFilter] = useState({
+    category: "all",
+    minprice: 0,
+  });
+
+  const filterProducts = (products) => {
+    return products.filter((product) => {
+      return (
+        product.precio >= filter.minprice && (filter.category === "all" || product.categoria === filter.category)
+      )
+    })
+  }
+
+  return { filterProducts, setFilter }
+}
+
+
+
+function Products() {
+  
+  const [products] = useState(initialProducts);
+  const { filterProducts, setFilter } = useFilter();
+
+  const filteredProducts = filterProducts(products);
+
+  return (
+    <>
+      <div className="min-h-screen flex flex-col">
+        <FiltersOpt onChange={setFilter} />
+        <ListProducts products={filteredProducts} />
+      </div>
+    </>
+
   );
 }
 

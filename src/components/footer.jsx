@@ -1,3 +1,5 @@
+
+
 const Footer = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t-8 border-gray-900 justify-items-center text-black p-4">
@@ -17,6 +19,11 @@ const Footer = () => {
 
       <div className="col-span-1 text-center">
         <strong className="text-orange-500"> Redes Sociales </strong>
+        <br />
+        <div className="flex items-center justify-center top-3">
+            <img src="/whatsapp-tile.svg" alt="whatsapp" className="w-10 h-10 m-2" />
+            <img src="/facebook-tile.svg" alt="facebook" className="w-10 h-10 m-2" />
+        </div>
       </div>
 
       <div className="col-span-1 flex flex-col items-center justify-center">

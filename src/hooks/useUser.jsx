@@ -2,15 +2,15 @@ import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 
 export function useUser() {
-    const { user, setUser } = useContext(UserContext);
+    const { user, saveUser, clearUser, loading } = useContext(UserContext);
 
     const login = (user) => {
-        setUser(user);
-    }
+        saveUser(user);
+    };
 
     const logout = () => {
-        setUser(null);
-    }
+        clearUser();
+    };
 
-    return { user, login, logout };
+    return { user, login, logout, loading };
 }

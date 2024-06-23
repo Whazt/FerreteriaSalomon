@@ -4,7 +4,7 @@ import Footer from "./components/footer";
 import Products from "./pages/products";  
 import Nosotros from "./pages/nostros";
 import ProductInfo from "./pages/productInfo";
-import {AdminPanel} from "./pages/adminPanel";
+import { AdminPanel } from "./pages/adminPanel";
 import { FiltersProvider } from "./context/filters";
 import { CartProvider } from "./context/cartcontext";
 import { UserProvider } from "./context/userContext";
@@ -19,7 +19,7 @@ function AppContent() {
       <div className="min-h-screen flex flex-col">
         <div className="flex-grow">
           <Routes>
-            <Route path="/Admin-Panel" element={<ProtectedRoute element={<AdminPanel />} />} />
+            <Route path="/Admin-Panel/*" element={<ProtectedRoute element={<AdminPanel />} />} />
           </Routes>
         </div>
       </div>

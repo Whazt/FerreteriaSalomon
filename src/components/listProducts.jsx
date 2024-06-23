@@ -1,4 +1,9 @@
+import { useCart } from "../hooks/useCart";
+
 function ListProducts({products}) {
+
+    const {addToCart} = useCart();
+
     return (
       <main className="bg-gray-50 ">
   
@@ -16,7 +21,9 @@ function ListProducts({products}) {
                           
                           <div className="flex  mt-1 items-end  justify-between">
                               
-                              <a href="#" className="text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Agregar al carrito</a>
+                            <button onClick={() => addToCart(product)} className="text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                                Agregar al carrito
+                            </button>
                           </div>
                       </div>
                   </div>

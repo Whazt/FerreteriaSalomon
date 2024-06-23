@@ -9,29 +9,29 @@ function CartIcon() {
   
     return (
         <div className="flex items-center justify-center">
-        <div className="inline-block relative flex items-center">
-          <svg
-            className="w-8 h-8 text-gray-700"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 3h2l.341 1.634a1 1 0 00.991.816h12.254a1 1 0 00.99-.816L21 3M5 13h14l1 6H4l1-6zm9 0V9a3 3 0 00-6 0v4"
-            />
-          </svg>
-          {totalItems > 0 && (
-            <span className="absolute -top-2 -right-2 bg-orange-400 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
-              {totalItems}
-            </span>
-          )}
+            <div className=" inline-block relative  items-center">
+                <svg
+                    className="w-8 h-8 text-gray-700"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 3h2l.341 1.634a1 1 0 00.991.816h12.254a1 1 0 00.99-.816L21 3M5 13h14l1 6H4l1-6zm9 0V9a3 3 0 00-6 0v4"
+                    />
+                </svg>
+                {totalItems > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-orange-400 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
+                    {totalItems}
+                    </span>
+                )}
+            </div>
+            <span className="ml-2 text-lg font-semibold">C${totalPrice}</span>
         </div>
-        <span className="ml-2 text-lg font-semibold">C${totalPrice}</span>
-      </div>
     );
 }
 
@@ -108,7 +108,7 @@ function CartItem({ titulo, precio, imagen, quantity, addToCart, removeFromCart 
           </ul>
           <div className="p-4 border-t border-gray-200">
             <button
-              className="w-full bg-red-500 text-white py-2 rounded mb-4"
+              className="w-full bg-orange-400 text-white py-2 rounded mb-4"
               onClick={clearCart}
             >
               Limpiar Carrito

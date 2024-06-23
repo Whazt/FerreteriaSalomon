@@ -11,7 +11,7 @@ function ListProducts({products}) {
   
         <ul className="grid grid-cols-1 ipp:justifey-items-center md:grid-cols-2 lg:grid-cols-4 md:m-1 lg:m-10">
           {products.map((product) => (
-              <li key={product.id} className="col-span-1 min-h-[500px] m-2">
+              <li key={product.id} className="col-span-1 min-h-[50%] m-2">
                   <div className="w-full max-w-sm bg-white boder border-t-1 border-gray-800 rounded-lg shadow-xl">
                       <NavLink to={`/Producto-Info/${product.id}`} className="">
                           <img className="py-3 px-6 rounded-t-lg" src={product.imagen} alt="product image" />

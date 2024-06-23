@@ -1,0 +1,32 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "email": "admin@example.com",
+        "password": "adminpassword123",
+        "phone": "82345678",
+        "type": "admin"
+      },
+      {
+        "id": 2,
+        "email": "client1@example.com",
+        "password": "clientpassword123",
+        "phone": "87654321",
+        "type": "client"
+      },
+      {
+        "id": 3,
+        "email": "client2@example.com",
+        "password": "clientpassword123",
+        "phone": "88334455",
+        "type": "client"
+      },
+      {
+        "id": 4,
+        "email": "client3@example.com",
+        "password": "clientpassword123",
+        "phone": "85667788",
+        "type": "client"
+      }
+    ]
+  }

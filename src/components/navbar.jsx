@@ -1,4 +1,5 @@
 import { Cart } from "./cart"
+import Login from "./login";
 import { SearchBar } from "./searchbar";
 import { NavLink } from "react-router-dom"
 
@@ -10,9 +11,7 @@ function Navbar() {
             <img src="/salomonlogo.png" alt="Salomon Logo" className="p-2 mx-auto block" />
             <SearchBar/>
             <div className="col-span-1  text-center  ">
-                <button className="p-2 bg-orange-400 text-white rounded-md hover:bg-orange-500">
-                  Iniciar Sesion
-                </button>
+              <Login />
             </div>
             <Cart className="col-span-1 text-left" />
             

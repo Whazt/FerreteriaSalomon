@@ -16,7 +16,7 @@ function ProductInfo() {
         <div>
             <h1>{product.titulo}</h1>
             <img src={product.imagen} alt="product image" className="w-20 h-20" />
-            <p>{product.precio}</p>
+            <p>C$ {product.precio}</p>
             <p>{product.marca}</p>
             <p>{product.descripcion}</p>
             <p >{product.valoraciones.map(valoracion => <p key={valoracion}>{valoracion}</p>)}</p>

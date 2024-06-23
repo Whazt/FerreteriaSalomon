@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { users } from '../mocks/users.json';
+import { users as initialUsers } from '../mocks/users.json';
 import { useUser } from '../hooks/useUser';
 
 const Login = () => {
@@ -14,13 +14,21 @@ const Login = () => {
   const { user, login, logout } = useUser();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const savedUsers = JSON.parse(localStorage.getItem('users'));
+    if (!savedUsers) {
+      localStorage.setItem('users', JSON.stringify(initialUsers));
+    }
+  }, []);
+
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const user = users.find((user) => user.email === email && user.password === password);
+    const savedUsers = JSON.parse(localStorage.getItem('users'));
+    const user = savedUsers.find((user) => user.email === email && user.password === password);
     if (user) {
       login(user);
       setShowModal(false);

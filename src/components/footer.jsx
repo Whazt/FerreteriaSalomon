@@ -1,18 +1,19 @@
-
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t-8 border-gray-900 justify-items-center text-black p-4">
       
       <div className="col-span-1 flex flex-col items-center justify-center text-center">
-        <strong className="text-orange-500"> Contactenos </strong>
+        <NavLink to="/Contact"><strong className="text-orange-500"> Contactenos </strong></NavLink>
+        
         <br />
         <div className="text-left">
             <span className="text-orange-500">Teléfono: <span className="text-black"> 2256-7485</span></span>
             <br />
             <span className="text-orange-500   ">Correo: <span className="text-black"> salomonferreteria@gmail.com </span></span>
             <br />
-            <p>Introduzca direccion no me la se xxd</p>
+            <p>De los semáforos del Conchita Palacios, 3 cuadras abajo, 1/2 al lago.</p>
         </div>
         
       </div>

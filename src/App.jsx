@@ -2,9 +2,10 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Products from "./pages/products";  
-import Nosotros from "./pages/nostros";
+import Nosotros from "./pages/nosotros";
+import Contact from "./pages/contact";
 import ProductInfo from "./pages/productInfo";
-import {AdminPanel} from "./pages/adminPanel";
+import { AdminPanel } from "./pages/adminPanel";
 import { FiltersProvider } from "./context/filters";
 import { CartProvider } from "./context/cartcontext";
 import { UserProvider } from "./context/userContext";
@@ -19,7 +20,7 @@ function AppContent() {
       <div className="min-h-screen flex flex-col">
         <div className="flex-grow">
           <Routes>
-            <Route path="/Admin-Panel" element={<ProtectedRoute element={<AdminPanel />} />} />
+            <Route path="/Admin-Panel/*" element={<ProtectedRoute element={<AdminPanel />} />} />
           </Routes>
         </div>
       </div>
@@ -34,6 +35,7 @@ function AppContent() {
           <Route path="/" element={<Products />} />
           <Route path="/Nosotros" element={<Nosotros />} />
           <Route path="/Producto-Info/:id" element={<ProductInfo />} />
+          <Route path="/Contact" element={<Contact />} />
         </Routes>
       </div>
       <footer>

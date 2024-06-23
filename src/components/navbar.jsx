@@ -1,4 +1,5 @@
 import { Cart } from "./cart"
+import { NavLink } from "react-router-dom"
 
 
 function Navbar() {
@@ -16,8 +17,8 @@ function Navbar() {
             <Cart className="col-span-1 text-center" />
             
             <div className="col-span-6 flex items-center justify-center bg-orange-400">
-                <a href="#" className="p-2 text-white rounded-md hover:bg-orange-500">INICIO</a>
-                <a href="#" className="p-2 text-white rounded-md hover:bg-orange-500">NOSOTROS</a>
+                <NavLink to="/" className="p-2 text-white rounded-md hover:bg-orange-500">INICIO</NavLink>
+                <NavLink to="/Nosotros" className="p-2 text-white rounded-md hover:bg-orange-500">NOSOTROS</NavLink>
             </div>
         </nav>
 

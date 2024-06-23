@@ -6,7 +6,13 @@
       "marca": "HYPER TOUGH",
       "imagen": "/JuegoDesarmadores.png",
       "categoria": "hmanual",
-      "precio": 300.50
+      "precio": 300.50,
+      "descripcion": "Juego de desarmadores de alta calidad, ideales para trabajos de precisión. Incluye 6 piezas de distintos tamaños.",
+      "valoraciones": [
+        "Muy útil y duradero.",
+        "Buen precio para la calidad que ofrece.",
+        "Perfecto para trabajos en casa."
+      ]
     },
     {
       "id": "0002",
@@ -14,7 +20,13 @@
       "marca": "TRUPER EXPERT",
       "imagen": "/RPLUS-4NX.jpg",
       "categoria":"helectrica",
-      "precio": 10525.50
+      "precio": 10525.50,
+      "descripcion": "Rotomartillo potente y eficiente, ideal para trabajos pesados en construcción. Con 1000W de potencia y 4 Joules de impacto.",
+      "valoraciones": [
+        "Excelente potencia y rendimiento.",
+        "Muy resistente y duradero.",
+        "Perfecto para trabajos profesionales."
+      ]
     },
     {
       "id": "0003",
@@ -22,7 +34,13 @@
       "marca": "STANLEY",
       "imagen": "/stanleycinta.jpg",
       "categoria":"hmanual",
-      "precio": 350.50
+      "precio": 350.50,
+      "descripcion": "Cinta métrica de alta precisión y durabilidad, perfecta para mediciones exactas en cualquier proyecto.",
+      "valoraciones": [
+        "Muy precisa y fácil de usar.",
+        "Resistente y de buena calidad.",
+        "Buena relación calidad-precio."
+      ]
     },
     {
       "id": "0004",
@@ -30,7 +48,13 @@
       "marca": "MAKITA",
       "imagen": "/granangular.jpg",
       "categoria":"helectrica",
-      "precio": 10734.45
+      "precio": 10734.45,
+      "descripcion": "Taladro angular compacto y potente, ideal para trabajos en espacios reducidos. Con 450W de potencia.",
+      "valoraciones": [
+        "Excelente para lugares difíciles de alcanzar.",
+        "Muy potente y fácil de manejar.",
+        "Herramienta imprescindible en cualquier taller."
+      ]
     },
     {
       "id": "0005",
@@ -38,7 +62,13 @@
       "marca": "STANLEY",
       "imagen": "/serrucho.jpg",
       "categoria":"hmanual",
-      "precio": 250.00
+      "precio": 250.00,
+      "descripcion": "Serrucho de alta calidad, perfecto para cortes precisos en madera. Con 8 dientes por pulgada para un corte rápido y limpio.",
+      "valoraciones": [
+        "Corte muy preciso y limpio.",
+        "Muy duradero y resistente.",
+        "Excelente herramienta para carpintería."
+      ]
     },
     {
       "id": "0006",
@@ -46,7 +76,13 @@
       "marca": "INCESA",
       "imagen": "/lavamanos.jpg",
       "categoria":"font",
-      "precio": 1260.50
+      "precio": 1260.50,
+      "descripcion": "Lavamanos de diseño elegante y moderno, perfecto para cualquier baño. Fabricado en loza de alta calidad.",
+      "valoraciones": [
+        "Muy elegante y fácil de instalar.",
+        "Material de muy buena calidad.",
+        "Perfecto para baños modernos."
+      ]
     },
     {
       "id": "0007",
@@ -54,7 +90,13 @@
       "marca": "STANLEY",
       "imagen": "/cuchilla.jpg",
       "categoria":"hmanual",
-      "precio": 60.00
+      "precio": 60.00,
+      "descripcion": "Cuchilla con mecanismo snap-off, ideal para cortes precisos. Incluye dos piezas de distintos tamaños (9mm y 18mm).",
+      "valoraciones": [
+        "Muy afiladas y precisas.",
+        "Fácil de usar y cambiar las hojas.",
+        "Buena calidad y precio accesible."
+      ]
     },
     {
       "id": "0008",
@@ -62,7 +104,13 @@
       "marca": "RIALTO",
       "imagen": "/fachaleta.jpg",
       "categoria":"construccion",
-      "precio": 420.50
+      "precio": 420.50,
+      "descripcion": "Fachaleta de acabado brillante, ideal para decoración de interiores y exteriores. Medidas de 30x60 cm.",
+      "valoraciones": [
+        "Muy elegante y fácil de instalar.",
+        "Excelente calidad y durabilidad.",
+        "Perfecta para darle un toque moderno a cualquier espacio."
+      ]
     },
     {
       "id": "0009",
@@ -70,7 +118,13 @@
       "marca": "MODELO",
       "imagen": "/pintura.jpg",
       "categoria":"pint",
-      "precio": 1080.90
+      "precio": 1080.90,
+      "descripcion": "Pintura de secado rápido, ideal para proyectos que requieren un acabado rápido y profesional. Presentación en 1 galón.",
+      "valoraciones": [
+        "Secado rápido y excelente cobertura.",
+        "Muy buena calidad y durabilidad.",
+        "Perfecta para proyectos grandes."
+      ]
     },
     {
       "id": "0010",
@@ -78,7 +132,13 @@
       "marca": "STANLEY",
       "imagen": "/nivel.jpg",
       "categoria":"hmanual",
-      "precio": 140.50
+      "precio": 140.50,
+      "descripcion": "Nivel de resina estructural, ideal para asegurar la precisión en trabajos de construcción y carpintería. Medidas de 12 pulgadas.",
+      "valoraciones": [
+        "Muy preciso y fácil de usar.",
+        "Resistente y duradero.",
+        "Perfecto para trabajos de nivelación."
+      ]
     }
   ]
 }

@@ -1,5 +1,6 @@
 import { useId, useState } from "react"
 import { useCart } from "../hooks/useCart"
+import { CloseIcon, BagIcon } from "./icons";
 
 function CartIcon() {
     const { cart } = useCart();
@@ -8,26 +9,13 @@ function CartIcon() {
     const totalPrice = cart.reduce((acc, item) => acc + item.precio * item.quantity, 0).toFixed(2);
   
     return (
-        <div className="flex items-center justify-center">
+        <div className="flex items-left justify-left">
             <div className=" inline-block relative  items-center">
-                <svg
-                    className="w-8 h-8 text-gray-700"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 3h2l.341 1.634a1 1 0 00.991.816h12.254a1 1 0 00.99-.816L21 3M5 13h14l1 6H4l1-6zm9 0V9a3 3 0 00-6 0v4"
-                    />
-                </svg>
+                <BagIcon  />
                 {totalItems > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-orange-400 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
+                    <span className="absolute -top-3 -right-2 bg-orange-400 border-2 border-white text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
                     {totalItems}
-                    </span>
+                  </span>
                 )}
             </div>
             <span className="ml-2 text-lg font-semibold">C${totalPrice}</span>
@@ -80,20 +68,7 @@ function CartItem({ titulo, precio, imagen, quantity, addToCart, removeFromCart 
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
             <h2 className="text-xl font-semibold">Carrito</h2>
             <label className="cursor-pointer" htmlFor={cartCheckId}>
-              <svg
-                className="w-6 h-6 text-gray-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <CloseIcon />
             </label>
           </div>
           <ul className="p-4 overflow-y-auto flex-grow">

@@ -19,7 +19,13 @@ function ProductInfo() {
             <p>C$ {product.precio}</p>
             <p>{product.marca}</p>
             <p>{product.descripcion}</p>
-            <p >{product.valoraciones.map(valoracion => <p key={valoracion}>{valoracion}</p>)}</p>
+            <ul>
+                {product.valoraciones.map(valoracion => 
+                <li 
+                    key={valoracion}
+                >{valoracion}
+                </li>)}
+            </ul>
         </div>
     )
 }

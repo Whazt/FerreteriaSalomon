@@ -38,7 +38,7 @@ function CartIcon() {
 function CartItem({ titulo, precio, imagen, quantity, addToCart, removeFromCart }) {
     return (
       <li className="flex items-center p-2 border-b border-gray-200">
-        <button className="px-2 text-red-500" onClick={removeFromCart}>-</button>
+        <button className="px-2 text-red-500 text-2xl bg-slate-50 justify-center  rounded-2xl" onClick={removeFromCart}>-</button>
         <img className="w-16 h-16 object-cover mx-2" src={imagen} alt={titulo} />
         <div className="flex-1">
           <div className="flex justify-between">
@@ -46,7 +46,7 @@ function CartItem({ titulo, precio, imagen, quantity, addToCart, removeFromCart 
           </div>
           <div className="flex justify-between">
             <span className="text-gray-700">C${precio.toFixed(2)}</span>
-            <button className="px-2 text-green-500" onClick={addToCart}>+</button>
+            <button className="px-1 text-green-500 text-2xl bg-slate-50 rounded-2xl" onClick={addToCart}>+</button>
           </div>
           <footer className="flex justify-between items-center mt-2">
             <small className="text-gray-500">Cant: {quantity}</small>

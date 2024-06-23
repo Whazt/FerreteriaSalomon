@@ -1,43 +1,43 @@
-import { useState } from "react";
+import {useId} from "react";
+import { useFilters } from "../hooks/useFilters";
 
-function FiltersOpt( {onChange} ){
-    const [minprice, setMinprice] = useState(0);
+function FiltersOpt(){
+    const {filters,  setFilters } = useFilters();
+    
+    const minpriceFilterId = useId();
+    const categoryFilterId = useId();
 
     const handleChangeMinprice = (e) => {
-        setMinprice(e.target.value);
-        onChange(prevState =>  ({
+        setFilters(prevState =>  ({
             ...prevState, 
             minprice: e.target.value
         }))
     }
 
     const handleChangeCategory = (e) => {
-        onChange(prevState =>  ({ 
+        setFilters(prevState =>  ({ 
             ...prevState, 
             category: e.target.value
         }))
     }
 
-
-
-
     return (
         <section className="filters">
             <div>
-                <label htmlFor='price' className="label">Precio a partir de: </label>
+                <label htmlFor={minpriceFilterId} className="label">Precio a partir de: </label>
                 <input 
                     type="range"
-                    id="price" 
-                    name="price" 
+                    id={minpriceFilterId}
                     min="0" 
                     max="20000" 
                     onChange={handleChangeMinprice}
+                    value={filters.minprice}
                 />
-                <span className="text-orange-500">{minprice}</span>
+                <span className="text-orange-500">{filters.minprice}</span>
             </div>
             <div>
-                <label htmlFor="category" className="label">Categoria</label>
-                <select id="category" name="category" onChange={handleChangeCategory}>
+                <label htmlFor={categoryFilterId} className="label">Categoria</label>
+                <select id={categoryFilterId} name="category" onChange={handleChangeCategory}>
                     <option value="all">Todas</option>
                     <option value="hmanual">Herramientas Manuales</option>
                     <option value="helectrica">Herramientas Electricas</option>

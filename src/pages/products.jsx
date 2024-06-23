@@ -1,39 +1,22 @@
 import FiltersOpt from "../components/filtersOpt";
 import ListProducts from "../components/listProducts";
+import { useFilters } from "../hooks/useFilters";
 import {products as initialProducts} from "../mocks/products.json";
-import { useState } from "react";
 
-
-function useFilter() {
-  const [filter, setFilter] = useState({
-    category: "all",
-    minprice: 0,
-  });
-
-  const filterProducts = (products) => {
-    return products.filter((product) => {
-      return (
-        product.precio >= filter.minprice && (filter.category === "all" || product.categoria === filter.category)
-      )
-    })
-  }
-
-  return { filterProducts, setFilter }
-}
 
 
 
 function Products() {
   
-  const [products] = useState(initialProducts);
-  const { filterProducts, setFilter } = useFilter();
+  
+  const { filterProducts} = useFilters();
 
-  const filteredProducts = filterProducts(products);
+  const filteredProducts = filterProducts(initialProducts);
 
   return (
     <>
       <div className="min-h-screen flex flex-col">
-        <FiltersOpt onChange={setFilter} />
+        <FiltersOpt />
         <ListProducts products={filteredProducts} />
       </div>
     </>

@@ -40,19 +40,19 @@ const Carrusel = () => {
       <h2 className="text-2xl font-bold mt-8 mb-4">Categorías</h2>
       <div className="grid grid-cols-4 gap-4">
         <div className="text-center">
-          <img src="/path-to-icon1.png" alt="Acabados" className="mx-auto" />
+          <img src="" alt="Acabados" className="mx-auto" />
           <p>Acabados</p>
         </div>
         <div className="text-center">
-          <img src="/path-to-icon2.png" alt="Automotriz" className="mx-auto" />
+          <img src="" alt="Automotriz" className="mx-auto" />
           <p>Automotriz</p>
         </div>
         <div className="text-center">
-          <img src="/path-to-icon3.png" alt="Baño" className="mx-auto" />
+          <img src="" alt="Baño" className="mx-auto" />
           <p>Baño</p>
         </div>
         <div className="text-center">
-          <img src="/path-to-icon4.png" alt="Construcción" className="mx-auto" />
+          <img src="" alt="Construcción" className="mx-auto" />
           <p>Construcción</p>
         </div>
         {/* Añade más categorías según sea necesario */}

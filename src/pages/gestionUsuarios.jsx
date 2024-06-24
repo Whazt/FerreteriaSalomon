@@ -1,13 +1,14 @@
-
 import { useState, useEffect } from 'react';
 import { users as initialUsers } from '../mocks/users.json';
 import { TrashIcon, EditIcon, AddIcon } from '../components/icons';
+import { useUser } from '../hooks/useUser';
 
 const GestionarUsuarios = () => {
   const [users, setUsers] = useState([]);
   const [newUser, setNewUser] = useState({ id: '', nombre: '', email: '', phone: '', password: '', type: '' });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const { user } = useUser();
 
   // Cargar usuarios desde localStorage o inicializar con JSON
   useEffect(() => {
@@ -36,6 +37,10 @@ const GestionarUsuarios = () => {
   };
 
   const handleDeleteUser = (id) => {
+    if (user.id === id && user.type === 'admin') {
+      alert('No se puede eliminar el usuario administrador que está activo.');
+      return;
+    }
     const updatedUsers = users.filter(user => user.id !== id);
     saveUsers(updatedUsers);
   };
@@ -138,6 +143,4 @@ const GestionarUsuarios = () => {
 };
 
 export default GestionarUsuarios;
-
-
 

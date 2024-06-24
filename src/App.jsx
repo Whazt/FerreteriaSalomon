@@ -11,6 +11,7 @@ import { FiltersProvider } from "./context/filters";
 import { CartProvider } from "./context/cartcontext";
 import { UserProvider } from "./context/userContext";
 import ProtectedRoute from './components/protectedRoute';
+import Inicio from './pages/inicio';
 
 function AppContent() {
   const location = useLocation();
@@ -33,8 +34,9 @@ function AppContent() {
       <Navbar />
       <div className="flex-grow">
         <Routes>
-          <Route path="/" element={<Products />} />
+          <Route path="/" element={<Inicio />} />
           <Route path="/Nosotros" element={<Nosotros />} />
+          <Route path="/Categorias" element={<Products />} />
           <Route path="/Producto-Info/:id" element={<ProductInfo />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Carrito" element={<Carrito />} />

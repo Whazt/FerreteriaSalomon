@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useCart } from "../hooks/useCart";
 import { SmallTrashIcon } from "../components/icons";
+import { NavLink } from 'react-router-dom';
+import { UserContext } from "../context/userContext";
+import LoginCarrito from '../components/loginCarrito'; // Asegúrate de importar tu componente de login específico para el carrito
 
 function CartItem({ id, titulo, precio, imagen, quantity, addToCart, removeFromCart, decreaseFromCart }) {
   const formattedPrice = new Intl.NumberFormat('es-NI', { style: 'currency', currency: 'NIO' }).format(precio);
@@ -33,7 +36,7 @@ function CartItem({ id, titulo, precio, imagen, quantity, addToCart, removeFromC
         <p className="mt-2">Precio unitario: {formattedPrice}</p>
         <p className="mt-2 font-semibold">Total: {formattedTotal}</p>
         <button
-          className="mt-2 flex items-center text-red-500  gap-1"
+          className="mt-2 flex items-center text-red-500 gap-1"
           onClick={() => removeFromCart({ id })}
         >
           <SmallTrashIcon /> Quitar del carrito
@@ -46,34 +49,59 @@ function CartItem({ id, titulo, precio, imagen, quantity, addToCart, removeFromC
 export function Carrito() {
   const { cart, addToCart, clearCart, decreaseFromCart, removeFromCart } = useCart();
   const [subtotal, setSubtotal] = useState(0);
-  
   const [totalItems, setTotalItems] = useState(0);
+  const [pickupOption, setPickupOption] = useState('store');
+  const [showModal, setShowModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [useUserAddress, setUseUserAddress] = useState(true);
+  const [address, setAddress] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('card');
+  const { user, login } = useContext(UserContext);
 
   useEffect(() => {
     const newSubtotal = cart.reduce((acc, item) => acc + item.precio * item.quantity, 0);
-   
     const newTotalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
     setSubtotal(newSubtotal);
-
     setTotalItems(newTotalItems);
   }, [cart]);
 
+  const handleCheckout = () => {
+    if (!user) {
+      setShowLoginModal(true);
+    } else {
+      setShowModal(true);
+    }
+  };
+
+  const handleLogin = (user) => {
+    login(user);
+    setShowLoginModal(false);
+    setShowModal(true);
+  };
+
+  const handlePayment = () => {
+    // Lógica para generar el recibo
+    console.log('Generando recibo...');
+    alert('Pago realizado con éxito.');
+    setShowModal(false);
+    clearCart();
+    window.location.href = '/';
+  };
+
   const formattedSubtotal = new Intl.NumberFormat('es-NI', { style: 'currency', currency: 'NIO' }).format(subtotal);
-  
-  
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 mt-16">
       <h1 className="text-3xl font-bold mb-4">Mi carrito de compras</h1>
       <div className="flex items-center mb-4">
         <label className="mr-4 text-lg"><span className="text-red-800 text-lg">*</span> Selecciona cómo quiere obtener su pedido:</label>
         <div className="flex items-center">
-          <input type="radio" id="delivery" name="pickupOption" value="delivery" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" />
+          <input type="radio" id="delivery" name="pickupOption" value="delivery" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setPickupOption('delivery')} />
           <label htmlFor="delivery" className="ml-2">Envío a domicilio</label>
         </div>
         <div className="flex items-center ml-4">
-          <input type="radio" id="store" name="pickupOption" value="store" defaultChecked className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" />
+          <input type="radio" id="store" name="pickupOption" value="store" defaultChecked className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setPickupOption('store')} />
           <label htmlFor="store" className="ml-2">Recoger en tienda</label>
         </div>
       </div>
@@ -95,29 +123,116 @@ export function Carrito() {
             <span>Subtotal ({totalItems} productos):</span>
             <span>{formattedSubtotal}</span>
           </div>
-          
           <div className="flex justify-between mb-4 font-bold">
             <span>Total (Incluye IVA):</span>
             <span>{formattedSubtotal}</span>
           </div>
-          <button
-            className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded mb-4"
-            onClick={clearCart}
-          >
-            Limpiar Carrito
-          </button>
-          <button
-            className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded mb-4"
-          >
-            Continuar Comprando
-          </button>
-          <button
-            className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded"
-          >
-            Ir a Pagar
-          </button>
+          <div>
+            <button
+              className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded mb-4"
+              onClick={clearCart}
+            >
+              Limpiar Carrito
+            </button>
+            <NavLink
+              to="/"
+              className="block w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded mb-4 text-center"
+            >
+              Continuar Comprando
+            </NavLink>
+            <button
+              className="block w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded text-center"
+              onClick={handleCheckout}
+            >
+              Ir a Pagar
+            </button>
+          </div>
         </div>
       </div>
+
+      {showLoginModal && (
+        <LoginCarrito
+          onClose={() => setShowLoginModal(false)}
+          onLogin={handleLogin}
+        />
+      )}
+
+      {showModal && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded shadow-lg w-1/2 relative">
+            <button
+              className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"
+              onClick={() => setShowModal(false)}
+            >
+              Cerrar
+            </button>
+            {pickupOption === 'delivery' ? (
+              <>
+                <h2 className="text-2xl mb-4">Información de Envío</h2>
+                <div className="mb-4">
+                  <label className="block text-gray-700">¿Usar la dirección guardada?</label>
+                  <div className="flex items-center">
+                    <input type="radio" id="useSavedAddressYes" name="useSavedAddress" value="yes" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setUseUserAddress(true)} defaultChecked />
+                    <label htmlFor="useSavedAddressYes" className="ml-2">Sí</label>
+                  </div>
+                  <div className="flex items-center ml-4">
+                    <input type="radio" id="useSavedAddressNo" name="useSavedAddress" value="no" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setUseUserAddress(false)} />
+                    <label htmlFor="useSavedAddressNo" className="ml-2">No</label>
+                  </div>
+                </div>
+                {!useUserAddress && (
+                  <div className="mb-4">
+                    <label className="block text-gray-700">Nueva Dirección</label>
+                    <input
+                      type="text"
+                      className="w-full px-3 py-2 border border-gray-300 rounded"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
+                  </div>
+                )}
+                <div className="mb-4">
+                  <label className="block text-gray-700">Método de Pago</label>
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded"
+                    value={paymentMethod}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  >
+                    <option value="card">Tarjeta de Crédito/Débito</option>
+                  </select>
+                </div>
+                <button
+                  className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded"
+                  onClick={handlePayment}
+                >
+                  Aceptar
+                </button>
+              </>
+            ) : (
+              <>
+                <h2 className="text-2xl mb-4">Método de Pago</h2>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Selecciona el método de pago:</label>
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded"
+                    value={paymentMethod}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  >
+                    <option value="card">Tarjeta de Crédito/Débito</option>
+                    <option value="store">Pagar en Tienda</option>
+                  </select>
+                </div>
+                <button
+                  className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded"
+                  onClick={handlePayment}
+                >
+                  Aceptar
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

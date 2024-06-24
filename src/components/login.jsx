@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaUser, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaUser } from 'react-icons/fa';
 import { users as initialUsers } from '../mocks/users.json';
 import { useUser } from '../hooks/useUser';
+import Register from './register'; // Importar el nuevo componente de registro
 
 const Login = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -44,6 +46,7 @@ const Login = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setShowRegisterModal(false);
     setEmail('');
     setPassword('');
     setLoginError('');
@@ -56,6 +59,17 @@ const Login = () => {
 
   const handleUserIconClick = () => {
     setShowUserMenu(!showUserMenu);
+  };
+
+  const handleOpenRegister = () => {
+    setShowModal(false);
+    setShowRegisterModal(true);
+  };
+
+  const handleRegister = (user) => {
+    login(user);
+    setShowRegisterModal(false);
+    alert('Registro exitoso. Ahora puede iniciar sesión.');
   };
 
   return (
@@ -87,18 +101,13 @@ const Login = () => {
       )}
 
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white pt-2 p-6 w-[50vh] min-h-[50vh] rounded-lg shadow-lg">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 w-96 min-h-[50vh] rounded-lg shadow-lg relative">
             <div className="flex justify-end mb-4">
-              <button
-                onClick={handleCloseModal}
-                className="text-xl font-bold"
-              >
-                x
-              </button>
+              <button onClick={handleCloseModal} className="text-xl font-bold">x</button>
             </div>
             <div className="flex flex-col justify-center items-center">
-              <img src="/salomonlogo.png" alt="Salomon Logo" />
+              <img src="/salomonlogo.png" alt="Salomon Logo" className="mb-4" />
               <h2 className="text-orange-400 text-2xl font-bold uppercase">Inicio de Sesión</h2>
               {loginError && <p className="text-red-500 mt-2">{loginError}</p>}
             </div>
@@ -140,10 +149,17 @@ const Login = () => {
               </button>
             </form>
             <div className="mt-4">
-              <span>¿No tienes una cuenta? <a href="/registro" className="text-orange-500">Regístrate</a></span>
+              <span>¿No tienes una cuenta? <button onClick={handleOpenRegister} className="text-orange-500">Regístrate</button></span>
             </div>
           </div>
         </div>
+      )}
+
+      {showRegisterModal && (
+        <Register
+          onClose={handleCloseModal}
+          onRegister={handleRegister}
+        />
       )}
     </div>
   );

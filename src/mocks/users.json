@@ -1,36 +1,52 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "email": "admin@example.com",
-        "password": "adminpassword123",
-        "phone": "82345678",
-        "type": "admin",
-        "nombre": "Admin User"
-      },
-      {
-        "id": 2,
-        "email": "client1@example.com",
-        "password": "clientpassword123",
-        "phone": "87654321",
-        "type": "client",
-        "nombre": "Client One"
-      },
-      {
-        "id": 3,
-        "email": "client2@example.com",
-        "password": "clientpassword123",
-        "phone": "88334455",
-        "type": "client",
-        "nombre": "Client Two"
-      },
-      {
-        "id": 4,
-        "email": "client3@example.com",
-        "password": "clientpassword123",
-        "phone": "85667788",
-        "type": "client",
-        "nombre": "Client Three"
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@example.com",
+      "password": "adminpassword123",
+      "phone": "82345678",
+      "type": "admin",
+      "nombre": "Admin",
+      "apellido": "User",
+      "direccion": "123 Admin St",
+      "ciudad": "Admin City",
+      "departamento": "Admin Dept"
+    },
+    {
+      "id": 2,
+      "email": "client1@example.com",
+      "password": "clientpassword123",
+      "phone": "87654321",
+      "type": "client",
+      "nombre": "Client",
+      "apellido": "One",
+      "direccion": "456 Client Rd",
+      "ciudad": "Client City",
+      "departamento": "Client Dept"
+    },
+    {
+      "id": 3,
+      "email": "client2@example.com",
+      "password": "clientpassword123",
+      "phone": "88334455",
+      "type": "client",
+      "nombre": "Client",
+      "apellido": "Two",
+      "direccion": "789 Client Ln",
+      "ciudad": "Client City",
+      "departamento": "Client Dept"
+    },
+    {
+      "id": 4,
+      "email": "client3@example.com",
+      "password": "clientpassword123",
+      "phone": "85667788",
+      "type": "client",
+      "nombre": "Client",
+      "apellido": "Three",
+      "direccion": "101 Client Blvd",
+      "ciudad": "Client City",
+      "departamento": "Client Dept"
+    }
+  ]
+}

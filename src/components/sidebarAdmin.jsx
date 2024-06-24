@@ -6,30 +6,45 @@ const SidebarAdmin = () => {
   const { logout } = useUser();
 
   return (
-    <div className="h-screen w-[30vh] bg-white text-black flex fixed flex-col justify-between border-r border-gray-300">
+    <div className="h-screen w-[10vh] md:w-[30vh] bg-white text-black flex fixed flex-col justify-between border-r border-gray-300">
       <div>
         <div className="flex items-center justify-center h-20 bg-white mb-10">
-          <img src="/salomonlogo.png" alt="Salomon Logo" className="p-2  mt-4 scol-span-1"/>
+          <img src="/salomonlogo.png" alt="Salomon Logo" className="p-2 mt-4 w-full md:w-auto" />
         </div>
         <nav className="flex flex-col mt-4">
           <NavLink
             to="/Admin-Panel"
-            className={({ isActive }) => isActive ? "m-1 py-4 px-6 bg-orange-400 text-white rounded-lg flex gap-2" : " m-1 py-4 px-6 hover:bg-orange-500 hover:text-white rounded-lg flex gap-2"}
+            className={({ isActive }) =>
+              isActive
+                ? "m-1 py-4 px-6 bg-orange-400 text-white rounded-lg flex gap-2 justify-center md:justify-start"
+                : "m-1 py-4 px-6 hover:bg-orange-500 hover:text-white rounded-lg flex gap-2 justify-center md:justify-start"
+            }
             end
           >
-            <ProductIcon /> Productos 
+            <ProductIcon />
+            <span className="hidden md:block">Productos</span>
           </NavLink>
           <NavLink
             to="/Admin-Panel/Usuarios"
-            className={({ isActive }) => isActive ? "m-1 py-4 px-6 bg-orange-400 text-white rounded-lg flex gap-2" : "flex gap-2 m-1 py-4 px-6 hover:bg-orange-500 hover:text-white rounded-lg"}
+            className={({ isActive }) =>
+              isActive
+                ? "m-1 py-4 px-6 bg-orange-400 text-white rounded-lg flex gap-2 justify-center md:justify-start"
+                : "m-1 py-4 px-6 hover:bg-orange-500 hover:text-white rounded-lg flex gap-2 justify-center md:justify-start"
+            }
           >
-           <UsersGestIcon /> Usuarios 
+            <UsersGestIcon />
+            <span className="hidden md:block">Usuarios</span>
           </NavLink>
           <NavLink
             to="/Admin-Panel/Ventas"
-            className={({ isActive }) => isActive ? "m-1 py-4 px-6 bg-orange-400 text-white rounded-lg flex gap-2" : " m-1 py-4 px-6 hover:bg-orange-500 hover:text-white rounded-lg flex gap-2"}
+            className={({ isActive }) =>
+              isActive
+                ? "m-1 py-4 px-6 bg-orange-400 text-white rounded-lg flex gap-2 justify-center md:justify-start"
+                : "m-1 py-4 px-6 hover:bg-orange-500 hover:text-white rounded-lg flex gap-2 justify-center md:justify-start"
+            }
           >
-           <VentasIcon /> Ventas 
+            <VentasIcon />
+            <span className="hidden md:block">Ventas</span>
           </NavLink>
         </nav>
       </div>
@@ -38,7 +53,8 @@ const SidebarAdmin = () => {
           onClick={logout}
           className="w-full gap-2 flex py-2 items-center justify-center bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded"
         >
-          <LogoutIcon/>Logout
+          <LogoutIcon />
+          <span className="hidden md:block">Logout</span>
         </button>
       </div>
     </div>

@@ -121,15 +121,16 @@ const Login = () => {
       ) : (
         <button
           onClick={() => { setShowModal(true); setShowUserMenu(false); }}
-          className="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded"
+          className="bg-orange-400 hover:bg-orange-500 text-white px-4 p-1 lg:py-2 rounded-md"
         >
-          Iniciar Sesión
+          <span className="block md:hidden">Sesión</span>
+          <span className="hidden md:block">Iniciar Sesión</span>
         </button>
       )}
 
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 w-96 min-h-[50vh] rounded-lg shadow-lg relative">
+          <div className="bg-white p-6 w-full max-w-md min-h-[50vh] rounded-lg shadow-lg relative">
             <div className="flex justify-end mb-4">
               <button onClick={handleCloseModal} className="text-xl font-bold">x</button>
             </div>

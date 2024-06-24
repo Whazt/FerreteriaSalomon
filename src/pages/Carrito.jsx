@@ -10,7 +10,7 @@ function CartItem({ id, titulo, precio, imagen, quantity, addToCart, removeFromC
   const formattedTotal = new Intl.NumberFormat('es-NI', { style: 'currency', currency: 'NIO' }).format(precio * quantity);
 
   return (
-    <div className="flex items-center p-4 border-b border-gray-200">
+    <div className="flex flex-col md:flex-row items-center p-4 border-b border-gray-200">
       <img className="w-32 h-32 object-cover" src={imagen} alt={titulo} />
       <div className="flex-1 ml-4">
         <h2 className="text-xl font-bold">{titulo}</h2>
@@ -101,7 +101,6 @@ export function Carrito() {
     setShowModal(false);
     setShowConfirmation(paymentMethod === 'card');
     setShowReceipt(paymentMethod !== 'card');
-    
   };
 
   const closeConfirmation = () => {
@@ -120,9 +119,9 @@ export function Carrito() {
   return (
     <div className="container mx-auto p-4 mt-16">
       <h1 className="text-3xl font-bold mb-4">Mi carrito de compras</h1>
-      <div className="flex items-center mb-4">
+      <div className="flex flex-col md:flex-row items-center mb-4">
         <label className="mr-4 text-lg"><span className="text-red-800 text-lg">*</span> Selecciona cómo quiere obtener su pedido:</label>
-        <div className="flex items-center">
+        <div className="flex items-center mb-2 md:mb-0">
           <input type="radio" id="delivery" name="pickupOption" value="delivery" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setPickupOption('delivery')} />
           <label htmlFor="delivery" className="ml-2">Envío a domicilio</label>
         </div>
@@ -131,7 +130,7 @@ export function Carrito() {
           <label htmlFor="store" className="ml-2">Recoger en tienda</label>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <div className="flex-grow">
           {cart.map((product) => (
             <CartItem
@@ -143,7 +142,7 @@ export function Carrito() {
             />
           ))}
         </div>
-        <div className="w-1/4 p-4 border-l border-gray-200">
+        <div className="w-full md:w-1/4 p-4 border-t md:border-t-0 md:border-l border-gray-200">
           <h2 className="text-xl font-bold mb-4">Total del pedido</h2>
           <div className="flex justify-between mb-2">
             <span>Subtotal ({totalItems} productos):</span>
@@ -179,39 +178,94 @@ export function Carrito() {
       {showLoginModal && (
         <LoginCarrito
           onClose={() => setShowLoginModal(false)}
-          onLogin={handleLogin}
-        />
-      )}
-
-      {showModal && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded shadow-lg w-11/12 md:w-3/4 lg:w-1/2 relative overflow-y-auto max-h-screen">
-            <button
-              className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"
-              onClick={() => setShowModal(false)}
-            >
-              Cerrar
-            </button>
-            <div className="text-center mb-4">
-              <img src="/salomonlogo.png" alt="Logo" className="mx-auto" />
-            </div>
-            <div>
-              {pickupOption === 'store' ? (
-                <>
-                  <h2 className="text-2xl mb-4">Opciones de Pago</h2>
-                  <div className="mb-4">
-                    <label className="block text-gray-700">Selecciona el método de pago:</label>
-                    <div className="flex items-center mt-2">
-                      <input type="radio" id="payInStore" name="paymentMethod" value="store" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setPaymentMethod('store')} />
-                      <label htmlFor="payInStore" className="ml-2">Pagar en tienda</label>
-                    </div>
-                    <div className="flex items-center mt-2">
-                      <input type="radio" id="payNow" name="paymentMethod" value="card" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setPaymentMethod('card')} />
-                      <label htmlFor="payNow" className="ml-2">Pagar ahora</label>
-                    </div>
-                  </div>
-                  {paymentMethod === 'card' && (
+            onLogin={handleLogin}
+            />
+          )}
+    
+          {showModal && (
+            <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+              <div className="bg-white p-8 rounded shadow-lg w-full max-w-md relative overflow-y-auto max-h-screen">
+                <button
+                  className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"
+                  onClick={() => setShowModal(false)}
+                >
+                  Cerrar
+                </button>
+                <div className="text-center mb-4">
+                  <img src="/salomonlogo.png" alt="Logo" className="mx-auto" />
+                </div>
+                <div>
+                  {pickupOption === 'store' ? (
                     <>
+                      <h2 className="text-2xl mb-4">Opciones de Pago</h2>
+                      <div className="mb-4">
+                        <label className="block text-gray-700">Selecciona el método de pago:</label>
+                        <div className="flex items-center mt-2">
+                          <input type="radio" id="payInStore" name="paymentMethod" value="store" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setPaymentMethod('store')} />
+                          <label htmlFor="payInStore" className="ml-2">Pagar en tienda</label>
+                        </div>
+                        <div className="flex items-center mt-2">
+                          <input type="radio" id="payNow" name="paymentMethod" value="card" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setPaymentMethod('card')} />
+                          <label htmlFor="payNow" className="ml-2">Pagar ahora</label>
+                        </div>
+                      </div>
+                      {paymentMethod === 'card' && (
+                        <>
+                          <div className="mb-4">
+                            <label className="block text-gray-700">Número de Tarjeta:</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block text-gray-700">MM/AA:</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block text-gray-700">CVC:</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                          </div>
+                        </>
+                      )}
+                      <div className="flex justify-between mb-4 font-bold">
+                        <span>Total (Incluye IVA):</span>
+                        <span>{formattedSubtotal}</span>
+                      </div>
+                      <button
+                        className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded mt-4"
+                        onClick={handlePayment}
+                      >
+                        Aceptar
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="text-2xl mb-4">Información de Envío</h2>
+                      <div className="mb-4">
+                        <label className="block text-gray-700">¿Usar la dirección guardada?</label>
+                        <div className="flex items-center mt-2">
+                          <input type="radio" id="useSavedAddressYes" name="useSavedAddress" value="yes" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setUseUserAddress(true)} defaultChecked />
+                          <label htmlFor="useSavedAddressYes" className="ml-2">Sí</label>
+                        </div>
+                        <div className="flex items-center mt-2">
+                          <input type="radio" id="useSavedAddressNo" name="useSavedAddress" value="no" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setUseUserAddress(false)} />
+                          <label htmlFor="useSavedAddressNo" className="ml-2">No</label>
+                        </div>
+                      </div>
+                      {!useUserAddress && (
+                        <>
+                          <div className="mb-4">
+                            <label className="block text-gray-700">Departamento:</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block text-gray-700">Ciudad:</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                          </div>
+                          <div className="mb-4">
+                            <label className="block text-gray-700">Dirección:</label>
+                            <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                          </div>
+                        </>
+                      )}
                       <div className="mb-4">
                         <label className="block text-gray-700">Número de Tarjeta:</label>
                         <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
@@ -224,129 +278,73 @@ export function Carrito() {
                         <label className="block text-gray-700">CVC:</label>
                         <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
                       </div>
+                      <div className="flex justify-between mb-4 font-bold">
+                        <span>Total (Incluye IVA):</span>
+                        <span>{formattedSubtotal}</span>
+                      </div>
+                      <button
+                        className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded mt-4"
+                        onClick={handlePayment}
+                      >
+                        Aceptar
+                      </button>
                     </>
                   )}
-                  <div className="flex justify-between mb-4 font-bold">
+                </div>
+              </div>
+            </div>
+          )}
+    
+          {showConfirmation && (
+            <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+              <div className="bg-white p-8 rounded shadow-lg text-center">
+                <img src="/check.png" alt="Confirmación" className="mx-auto mb-4" />
+                <p className="text-xl font-bold mb-4">Pago realizado con éxito</p>
+                <button
+                  className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded"
+                  onClick={closeConfirmation}
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          )}
+    
+          {showReceipt && (
+            <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+              <div className="bg-white p-8 rounded shadow-lg text-center relative">
+                <button
+                  className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"
+                  onClick={closeReceipt}
+                >
+                  Cerrar
+                </button>
+                <div>
+                  <p><strong>No. Pedido:</strong> {Math.floor(Math.random() * 1000000)}</p>
+                  <p><strong>{pickupOption === 'store' ? 'Retiro En Tienda' : 'Entrega a Domicilio'}</strong></p>
+                  <p><strong>Cliente:</strong> {user.name}</p>
+                  <div>
+                    <h3 className="font-bold mt-4">Artículos:</h3>
+                    <ul className="list-disc list-inside">
+                      {cart.map(item => (
+                        <li key={item.id}>{item.titulo} (x{item.quantity}) - {new Intl.NumberFormat('es-NI', { style: 'currency', currency: 'NIO' }).format(item.precio)}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="flex justify-between mb-2">
+                    <span>Subtotal:</span>
+                    <span>{formattedSubtotal}</span>
+                  </div>
+                  <div className="flex justify-between mb-2">
                     <span>Total (Incluye IVA):</span>
                     <span>{formattedSubtotal}</span>
                   </div>
-                  <button
-                    className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded mt-4"
-                    onClick={handlePayment}
-                  >
-                    Aceptar
-                  </button>
-                </>
-              ) : (
-                <>
-                  <h2 className="text-2xl mb-4">Información de Envío</h2>
-                  <div className="mb-4">
-                    <label className="block text-gray-700">¿Usar la dirección guardada?</label>
-                    <div className="flex items-center mt-2">
-                      <input type="radio" id="useSavedAddressYes" name="useSavedAddress" value="yes" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setUseUserAddress(true)} defaultChecked />
-                      <label htmlFor="useSavedAddressYes" className="ml-2">Sí</label>
-                    </div>
-                    <div className="flex items-center mt-2">
-                      <input type="radio" id="useSavedAddressNo" name="useSavedAddress" value="no" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setUseUserAddress(false)} />
-                      <label htmlFor="useSavedAddressNo" className="ml-2">No</label>
-                    </div>
-                  </div>
-                  {!useUserAddress && (
-                    <>
-                      <div className="mb-4">
-                        <label className="block text-gray-700">Departamento:</label>
-                        <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
-                      </div>
-                      <div className="mb-4">
-                        <label className="block text-gray-700">Ciudad:</label>
-                        <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
-                      </div>
-                      <div className="mb-4">
-                        <label className="block text-gray-700">Dirección:</label>
-                        <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
-                      </div>
-                    </>
-                  )}
-                  <div className="mb-4">
-                    <label className="block text-gray-700">Número de Tarjeta:</label>
-                    <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-gray-700">MM/AA:</label>
-                    <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-gray-700">CVC:</label>
-                    <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
-                  </div>
-                  <div className="flex justify-between mb-4 font-bold">
-                    <span>Total (Incluye IVA):</span>
-                    <span>{formattedSubtotal}</span>
-                  </div>
-                  <button
-                    className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded mt-4"
-                    onClick={handlePayment}
-                  >
-                    Aceptar
-                  </button>
-                </>
-              )}
+                  {paymentMethod === 'card' && <p className="font-bold text-green-600">Pagado</p>}
+                  {paymentMethod === 'store' && <p className="font-bold text-red-600">Pendiente de Pago</p>}
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
-      )}
-
-      {showConfirmation && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded shadow-lg text-center">
-            <img src="/check.png" alt="Confirmación" className="mx-auto mb-4" />
-            <p className="text-xl font-bold mb-4">Pago realizado con éxito</p>
-            <button
-              className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded"
-              onClick={closeConfirmation}
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      )}
-
-      {showReceipt && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded shadow-lg text-center">
-            <button
-              className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"
-              onClick={closeReceipt}
-            >
-              Cerrar
-            </button>
-            <div>
-              <p><strong>No. Pedido:</strong> {Math.floor(Math.random() * 1000000)}</p>
-              <p><strong>{pickupOption === 'store' ? 'Retiro En Tienda' : 'Entrega a Domicilio'}</strong></p>
-              <p><strong>Cliente:</strong> {user.name}</p>
-              <div>
-                <h3 className="font-bold mt-4">Artículos:</h3>
-                <ul className="list-disc list-inside">
-                  {cart.map(item => (
-                    <li key={item.id}>{item.titulo} (x{item.quantity}) - {new Intl.NumberFormat('es-NI', { style: 'currency', currency: 'NIO' }).format(item.precio)}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>Subtotal:</span>
-                <span>{formattedSubtotal}</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>Total (Incluye IVA):</span>
-                <span>{formattedSubtotal}</span>
-              </div>
-              {paymentMethod === 'card' && <p className="font-bold text-green-600">Pagado</p>}
-              {paymentMethod === 'store' && <p className="font-bold text-red-600">Pendiente de Pago</p>}
-              
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+      );
+    }

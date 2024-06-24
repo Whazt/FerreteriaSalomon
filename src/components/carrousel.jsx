@@ -42,7 +42,7 @@ const Carrusel = () => {
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex < products.length - 3 ? prevIndex + 1 : products.length - 3));
+    setCurrentIndex((prevIndex) => (prevIndex < products.length - 1 ? prevIndex + 1 : products.length - 1));
   };
 
   return (
@@ -66,34 +66,34 @@ const Carrusel = () => {
       </Carousel>
 
       <h2 className="text-2xl font-bold mt-8 mb-4">Categorías</h2>
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
         <div className="text-center">
           <button onClick={() => handleCategory('hmanual')} className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
-            <img src="/hammer.svg" alt="Martillo" className="size-18 text-orange-400 rounded-lg" />
+            <img src="/hammer.svg" alt="Martillo" className="w-12 h-12 text-orange-400 rounded-lg" />
           </button>
           <p className="text-orange-400">Herramientas Manuales</p>
         </div>
         <div className="text-center">
           <button onClick={() => handleCategory('helectrica')} className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
-            <img src="/drill.svg" alt="Taladro" className="size-18 text-orange-400 rounded-lg" />
+            <img src="/drill.svg" alt="Taladro" className="w-12 h-12 text-orange-400 rounded-lg" />
           </button>
           <p className="text-orange-400">Herramientas Electrícas</p>
         </div>
         <div className="text-center">
           <button onClick={() => handleCategory('pint')} className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
-            <img src="/paint.svg" alt="Pintura" className="text-orange-400 rounded-lg" />
+            <img src="/paint.svg" alt="Pintura" className="w-12 h-12 text-orange-400 rounded-lg" />
           </button>
           <p className="text-orange-400">Pintura</p>
         </div>
         <div className="text-center">
           <button onClick={() => handleCategory('font')} className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
-            <img src="/plumb.svg" alt="Fontanería" className="size-18 text-orange-400 rounded-lg" />
+            <img src="/plumb.svg" alt="Fontanería" className="w-12 h-12 text-orange-400 rounded-lg" />
           </button>
           <p className="text-orange-400">Fontanería</p>
         </div>
         <div className="text-center">
           <button onClick={() => handleCategory('construccion')} className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
-            <img src="/wall.svg" alt="Construcción" className="size-18 text-orange-400 rounded-lg" />
+            <img src="/wall.svg" alt="Construcción" className="w-12 h-12 text-orange-400 rounded-lg" />
           </button>
           <p className="text-orange-400">Construcción</p>
         </div>
@@ -109,13 +109,13 @@ const Carrusel = () => {
       <div className="relative">
         <button
           onClick={handlePrev}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-orange-400 text-white p-2 rounded-full"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-orange-400 text-white p-2 rounded-full z-10"
         >
           &lt;
         </button>
-        <div className="flex overflow-hidden space-x-4">
+        <div className="flex overflow-x-auto space-x-4">
           {products.slice(currentIndex, currentIndex + 3).map((product) => (
-            <div key={product.id} className="flex-shrink-0 w-1/3 text-center p-4">
+            <div key={product.id} className="flex-shrink-0 w-2/3 sm:w-1/2 md:w-1/3 text-center p-4">
               <img src={product.imagen} alt={product.titulo} className="mx-auto mb-4 max-h-60 object-contain" />
               <p className="font-bold mb-6">{product.titulo}</p>
               <NavLink to={`/Producto-Info/${product.id}`} className="bg-orange-400 text-white p-4 rounded my-2">Comprar Ahora</NavLink>
@@ -124,7 +124,7 @@ const Carrusel = () => {
         </div>
         <button
           onClick={handleNext}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-orange-400 text-white p-2 rounded-full"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-orange-400 text-white p-2 rounded-full z-10"
         >
           &gt;
         </button>

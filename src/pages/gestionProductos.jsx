@@ -18,7 +18,6 @@ const GestionProductos = () => {
     { value: 'construccion', label: 'Construcción' },
   ]);
 
-  // Cargar productos desde localStorage o inicializar con JSON
   useEffect(() => {
     const savedProducts = JSON.parse(localStorage.getItem('products'));
     if (savedProducts && savedProducts.length > 0) {
@@ -29,7 +28,6 @@ const GestionProductos = () => {
     }
   }, []);
 
-  // Guardar productos en localStorage
   const saveProducts = (products) => {
     localStorage.setItem('products', JSON.stringify(products));
     setProducts(products);
@@ -53,10 +51,10 @@ const GestionProductos = () => {
     if (imageFile) {
       const formData = new FormData();
       formData.append('file', imageFile);
-      formData.append('upload_preset', 'swiijmtu'); // Usa tu upload preset de Cloudinary
+      formData.append('upload_preset', 'swiijmtu');
 
       try {
-        const response = await axios.post('https://api.cloudinary.com/v1_1/dffityi8e/image/upload', formData); // Usa tu nombre de Cloudinary
+        const response = await axios.post('https://api.cloudinary.com/v1_1/dffityi8e/image/upload', formData);
         imageUrl = response.data.secure_url;
       } catch (error) {
         console.error('Error al subir la imagen:', error);
@@ -94,10 +92,10 @@ const GestionProductos = () => {
     if (imageFile) {
       const formData = new FormData();
       formData.append('file', imageFile);
-      formData.append('upload_preset', 'swiijmtu'); // Usa tu upload preset de Cloudinary
+      formData.append('upload_preset', 'swiijmtu');
 
       try {
-        const response = await axios.post('https://api.cloudinary.com/v1_1/dffityi8e/image/upload', formData); // Usa tu nombre de Cloudinary
+        const response = await axios.post('https://api.cloudinary.com/v1_1/dffityi8e/image/upload', formData);
         imageUrl = response.data.secure_url;
       } catch (error) {
         console.error('Error al subir la imagen:', error);
@@ -118,7 +116,7 @@ const GestionProductos = () => {
   };
 
   return (
-    <div className="container mx-auto overflow-y-auto p-4">
+    <div className="container lg:mx-auto overflow-y-auto lg:p-4">
       <div className="flex justify-between items-center my-4">
         <h1 className="text-2xl font-bold">Productos</h1>
         <div>
@@ -129,7 +127,7 @@ const GestionProductos = () => {
         {products.map(product => (
           <div key={product.id} className="p-4 border rounded flex justify-between items-center">
             <div className="flex items-center">
-              <img src={product.imagen} alt={product.titulo} className="w-16 h-16 mr-4" />
+              <img src={product.imagen} alt={product.titulo} className="w-16 h-16 mr-4 object-contain" />
               <div>
                 <p><strong>ID:</strong> {product.id}</p>
                 <p><strong>Título:</strong> {product.titulo}</p>
@@ -148,7 +146,7 @@ const GestionProductos = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded shadow-lg">
+          <div className="bg-white p-6 rounded shadow-lg w-96">
             <h2 className="text-xl font-bold mb-4">{isEditing ? 'Modificar Producto' : 'Añadir Nuevo Producto'}</h2>
             <div className="grid grid-cols-1 gap-4">
               <input

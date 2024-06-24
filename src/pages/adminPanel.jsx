@@ -8,7 +8,7 @@ export function AdminPanel() {
   return (
     <div className="flex">
       <SidebarAdmin />
-      <div className="flex-grow ml-[30vh]">
+      <div className="flex-grow ml-[10vh] lg:ml-[30vh]">
         <Routes>
           <Route path="/" element={<GestionProductos />} />
           <Route path="Usuarios" element={<GestionUsuarios />} />

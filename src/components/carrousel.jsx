@@ -10,7 +10,18 @@ const Carrusel = () => {
   useEffect(() => {
     const storedProducts = localStorage.getItem('products');
     if (storedProducts) {
-      setProducts(JSON.parse(storedProducts));
+      try {
+        const parsedProducts = JSON.parse(storedProducts);
+        if (parsedProducts && Array.isArray(parsedProducts)) {
+          setProducts(parsedProducts);
+        } else {
+          throw new Error('Invalid data');
+        }
+      } catch (error) {
+        console.error('Error parsing JSON:', error);
+        localStorage.setItem('products', JSON.stringify(productsData));
+        setProducts(productsData);
+      }
     } else {
       localStorage.setItem('products', JSON.stringify(productsData));
       setProducts(productsData);

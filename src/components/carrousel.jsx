@@ -12,8 +12,8 @@ const Carrusel = () => {
     if (storedProducts) {
       setProducts(JSON.parse(storedProducts));
     } else {
-      localStorage.setItem('products', JSON.stringify(productsData.products));
-      setProducts(productsData.products);
+      localStorage.setItem('products', JSON.stringify(productsData));
+      setProducts(productsData);
     }
   }, []);
 
@@ -63,8 +63,6 @@ const Carrusel = () => {
         <p className='mb-4'>No te pierdas nuestras promociones</p>
         <NavLink to="/Categorias" className="bg-white text-orange-400 p-2 rounded mt-2">Comprar Ahora</NavLink>
       </div>
-
-      
 
       <h2 className="text-2xl font-bold mt-8 mb-4">Productos Destacados</h2>
       <div className="grid grid-cols-4 gap-4">

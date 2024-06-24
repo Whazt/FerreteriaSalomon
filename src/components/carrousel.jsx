@@ -49,42 +49,61 @@ const Carrusel = () => {
       </Carousel>
 
       <h2 className="text-2xl font-bold mt-8 mb-4">Categorías</h2>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         <div className="text-center">
-          <img src="" alt="Acabados" className="mx-auto" />
-          <p>Acabados</p>
+          <button className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200" >
+           <img src="/hammer.svg" alt="Martillo" className="size-18 text-orange-400  rounded-lg" /> 
+          </button>
+          <p className="text-orange-400">Herramientas Manuales</p>
         </div>
         <div className="text-center">
-          <img src="" alt="Automotriz" className="mx-auto" />
-          <p>Automotriz</p>
+          <button className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200" >
+           <img src="/drill.svg" alt="Martillo" className="size-18 text-orange-400  rounded-lg" /> 
+          </button>
+          <p className="text-orange-400">Herramientas Electrícas</p>
         </div>
         <div className="text-center">
-          <img src="" alt="Baño" className="mx-auto" />
-          <p>Baño</p>
+          <button className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200" >
+           <img src="/paint.svg" alt="Martillo" className=" text-orange-400  rounded-lg" /> 
+          </button>
+          <p className="text-orange-400">Pintura</p>
         </div>
         <div className="text-center">
-          <img src="" alt="Construcción" className="mx-auto" />
-          <p>Construcción</p>
+          <button className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200" >
+           <img src="/plumb.svg" alt="Martillo" className="size-18 text-orange-400  rounded-lg" /> 
+          </button>
+          <p className="text-orange-400">Fontanería</p>
         </div>
-        {/* Añade más categorías según sea necesario */}
+        <div className="text-center">
+          <button className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200" >
+           <img src="/wall.svg" alt="Martillo" className="size-18 text-orange-400  rounded-lg" /> 
+          </button>
+          <p className="text-orange-400">Construcción</p>
+        </div>
       </div>
 
       <div className="bg-orange-400 text-white text-center py-4 mt-8">
         <h2 className="text-2xl font-bold">¡Ofertas Especiales!</h2>
         <p className='mb-4'>No te pierdas nuestras promociones</p>
-        <NavLink to="/Categorias" className="bg-white text-orange-400 p-2 rounded mt-2">Comprar Ahora</NavLink>
+        <NavLink to="/Categorias" className="bg-white text-orange-400 p-2 rounded mt-2 inline-block">Comprar Ahora</NavLink>
       </div>
 
       <h2 className="text-2xl font-bold mt-8 mb-4">Productos Destacados</h2>
-      <div className="grid grid-cols-4 gap-4">
+      <Carousel
+        showThumbs={false}
+        infiniteLoop={true}
+        autoPlay={true}
+        interval={5000}
+        className="m-0 p-0"
+      >
         {products.map((product) => (
-          <div key={product.id} className="text-center m-2 border">
-            <img src={product.imagen} alt={product.titulo} className="mx-auto" />
-            <p>{product.titulo}</p>
+          <div key={product.id} className="text-center p-4">
+            <img src={product.imagen} alt={product.titulo} className="mx-auto mb-4 max-h-60 object-contain" />
+            <p className="font-bold">{product.titulo}</p>
             <button className="bg-orange-400 text-white p-2 rounded my-2">Comprar Ahora</button>
           </div>
         ))}
-      </div>
+      </Carousel>
     </div>
   );
 };

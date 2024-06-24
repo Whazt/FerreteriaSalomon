@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash, FaUser } from 'react-icons/fa';
 import { users as initialUsers } from '../mocks/users.json';
@@ -15,12 +15,26 @@ const Login = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const { user, login, logout } = useUser();
   const navigate = useNavigate();
+  const userMenuRef = useRef(null);
 
   useEffect(() => {
     const savedUsers = JSON.parse(localStorage.getItem('users'));
     if (!savedUsers) {
       localStorage.setItem('users', JSON.stringify(initialUsers));
     }
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setShowUserMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const togglePasswordVisibility = () => {
@@ -72,16 +86,29 @@ const Login = () => {
     alert('Registro exitoso. Ahora puede iniciar sesión.');
   };
 
+  const handleAdminPanel = () => {
+    navigate('/Admin-Panel');
+    setShowUserMenu(false);
+  };
+
   return (
     <div className="flex justify-center items-center">
       {user ? (
-        <div className="relative">
+        <div className="relative" ref={userMenuRef}>
           <FaUser
             className="text-orange-400 text-2xl cursor-pointer"
             onClick={handleUserIconClick}
           />
           {showUserMenu && (
             <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg z-10">
+              {user.type === 'admin' && (
+                <button
+                  onClick={handleAdminPanel}
+                  className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100"
+                >
+                  Panel Administrador
+                </button>
+              )}
               <button
                 onClick={handleLogout}
                 className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100"

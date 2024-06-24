@@ -101,7 +101,7 @@ export function Carrito() {
     setShowModal(false);
     setShowConfirmation(paymentMethod === 'card');
     setShowReceipt(paymentMethod !== 'card');
-    clearCart();
+    
   };
 
   const closeConfirmation = () => {
@@ -111,6 +111,7 @@ export function Carrito() {
 
   const closeReceipt = () => {
     setShowReceipt(false);
+    clearCart();
     window.location.href = '/';
   };
 
@@ -341,9 +342,7 @@ export function Carrito() {
               </div>
               {paymentMethod === 'card' && <p className="font-bold text-green-600">Pagado</p>}
               {paymentMethod === 'store' && <p className="font-bold text-red-600">Pendiente de Pago</p>}
-              <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded" onClick={closeReceipt}>
-                Descargar Recibo
-              </button>
+              
             </div>
           </div>
         </div>

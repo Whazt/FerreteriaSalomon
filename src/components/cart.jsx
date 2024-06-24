@@ -33,7 +33,8 @@ function CartItem({ titulo, precio, imagen, quantity, addToCart, removeFromCart 
           <strong className="text-gray-700">{titulo}</strong>
         </div>
         <div className="flex justify-between">
-          <span className="text-gray-700">C${precio.toFixed(2)}</span>
+        
+          <span className="text-gray-700">C${precio}</span>
           <button className="px-1 text-green-500 text-2xl bg-slate-50 rounded-2xl" onClick={addToCart}>+</button>
         </div>
         <footer className="flex justify-between items-center mt-2">

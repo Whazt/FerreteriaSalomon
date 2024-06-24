@@ -5,6 +5,7 @@ export const FiltersContext = createContext();
 export function FiltersProvider ({children})  {
   const [filters, setFilters] = useState({
     minprice: 0,
+    maxprice: 200000,
     category: 'all'
   });
 

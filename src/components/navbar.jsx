@@ -15,7 +15,7 @@ function Navbar() {
             </div>
             <Cart className="col-span-1 text-left" />
             
-            <div className="col-span-8 flex items-center justify-center bg-orange-400">
+            <div className="col-span-8 flex gap-2 items-center justify-center bg-orange-400">
                 <NavLink to="/" className="p-2 text-white rounded-md hover:bg-orange-500">INICIO</NavLink>
                 <NavLink to="/Nosotros" className="p-2 text-white rounded-md hover:bg-orange-500">NOSOTROS</NavLink>
                 <NavLink to="/Categorias" className="p-2 text-white rounded-md hover:bg-orange-500 uppercase">CATEGORías</NavLink>

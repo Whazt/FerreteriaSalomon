@@ -56,6 +56,7 @@ export function Carrito() {
   const [useUserAddress, setUseUserAddress] = useState(true);
   const [address, setAddress] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('card');
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const { user, login } = useContext(UserContext);
 
   useEffect(() => {
@@ -83,9 +84,13 @@ export function Carrito() {
   const handlePayment = () => {
     // Lógica para generar el recibo
     console.log('Generando recibo...');
-    alert('Pago realizado con éxito.');
     setShowModal(false);
+    setShowConfirmation(true);
     clearCart();
+  };
+
+  const closeConfirmation = () => {
+    setShowConfirmation(false);
     window.location.href = '/';
   };
 
@@ -159,77 +164,128 @@ export function Carrito() {
 
       {showModal && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded shadow-lg w-1/2 relative">
+          <div className="bg-white p-8 rounded shadow-lg w-11/12 md:w-3/4 lg:w-1/2 relative overflow-y-auto max-h-screen">
             <button
               className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"
               onClick={() => setShowModal(false)}
             >
               Cerrar
             </button>
-            {pickupOption === 'delivery' ? (
-              <>
-                <h2 className="text-2xl mb-4">Información de Envío</h2>
-                <div className="mb-4">
-                  <label className="block text-gray-700">¿Usar la dirección guardada?</label>
-                  <div className="flex items-center">
-                    <input type="radio" id="useSavedAddressYes" name="useSavedAddress" value="yes" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setUseUserAddress(true)} defaultChecked />
-                    <label htmlFor="useSavedAddressYes" className="ml-2">Sí</label>
-                  </div>
-                  <div className="flex items-center ml-4">
-                    <input type="radio" id="useSavedAddressNo" name="useSavedAddress" value="no" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setUseUserAddress(false)} />
-                    <label htmlFor="useSavedAddressNo" className="ml-2">No</label>
-                  </div>
-                </div>
-                {!useUserAddress && (
+            <div className="text-center mb-4">
+              <img src="/path/to/logo.png" alt="Logo" className="mx-auto" />
+            </div>
+            <div>
+              {pickupOption === 'store' ? (
+                <>
+                  <h2 className="text-2xl mb-4">Opciones de Pago</h2>
                   <div className="mb-4">
-                    <label className="block text-gray-700">Nueva Dirección</label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                    />
+                    <label className="block text-gray-700">Selecciona el método de pago:</label>
+                    <div className="flex items-center mt-2">
+                      <input type="radio" id="payInStore" name="paymentMethod" value="store" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setPaymentMethod('store')} />
+                      <label htmlFor="payInStore" className="ml-2">Pagar en tienda</label>
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <input type="radio" id="payNow" name="paymentMethod" value="card" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setPaymentMethod('card')} />
+                      <label htmlFor="payNow" className="ml-2">Pagar ahora</label>
+                    </div>
                   </div>
-                )}
-                <div className="mb-4">
-                  <label className="block text-gray-700">Método de Pago</label>
-                  <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded"
-                    value={paymentMethod}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  {paymentMethod === 'card' && (
+                    <>
+                      <div className="mb-4">
+                        <label className="block text-gray-700">Número de Tarjeta:</label>
+                        <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                      </div>
+                      <div className="mb-4">
+                        <label className="block text-gray-700">MM/AA:</label>
+                        <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                      </div>
+                      <div className="mb-4">
+                        <label className="block text-gray-700">CVC:</label>
+                        <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                      </div>
+                    </>
+                  )}
+                  <div className="flex justify-between mb-4 font-bold">
+                    <span>Total (Incluye IVA):</span>
+                    <span>{formattedSubtotal}</span>
+                  </div>
+                  <button
+                    className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded mt-4"
+                    onClick={handlePayment}
                   >
-                    <option value="card">Tarjeta de Crédito/Débito</option>
-                  </select>
-                </div>
-                <button
-                  className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded"
-                  onClick={handlePayment}
-                >
-                  Aceptar
-                </button>
-              </>
-            ) : (
-              <>
-                <h2 className="text-2xl mb-4">Método de Pago</h2>
-                <div className="mb-4">
-                  <label className="block text-gray-700">Selecciona el método de pago:</label>
-                  <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded"
-                    value={paymentMethod}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    Aceptar
+                  </button>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-2xl mb-4">Información de Envío</h2>
+                  <div className="mb-4">
+                    <label className="block text-gray-700">¿Usar la dirección guardada?</label>
+                    <div className="flex items-center mt-2">
+                      <input type="radio" id="useSavedAddressYes" name="useSavedAddress" value="yes" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setUseUserAddress(true)} defaultChecked />
+                      <label htmlFor="useSavedAddressYes" className="ml-2">Sí</label>
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <input type="radio" id="useSavedAddressNo" name="useSavedAddress" value="no" className="w-5 h-5 text-blue-500 border-gray-300 focus:ring-blue-500" onChange={() => setUseUserAddress(false)} />
+                      <label htmlFor="useSavedAddressNo" className="ml-2">No</label>
+                    </div>
+                  </div>
+                  {!useUserAddress && (
+                    <>
+                      <div className="mb-4">
+                        <label className="block text-gray-700">Departamento:</label>
+                        <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                      </div>
+                      <div className="mb-4">
+                        <label className="block text-gray-700">Ciudad:</label>
+                        <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                      </div>
+                      <div className="mb-4">
+                        <label className="block text-gray-700">Dirección:</label>
+                        <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                      </div>
+                    </>
+                  )}
+                  <div className="mb-4">
+                    <label className="block text-gray-700">Número de Tarjeta:</label>
+                    <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-gray-700">MM/AA:</label>
+                    <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-gray-700">CVC:</label>
+                    <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded" />
+                  </div>
+                  <div className="flex justify-between mb-4 font-bold">
+                    <span>Total (Incluye IVA):</span>
+                    <span>{formattedSubtotal}</span>
+                  </div>
+                  <button
+                    className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded mt-4"
+                    onClick={handlePayment}
                   >
-                    <option value="card">Tarjeta de Crédito/Débito</option>
-                    <option value="store">Pagar en Tienda</option>
-                  </select>
-                </div>
-                <button
-                  className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded"
-                  onClick={handlePayment}
-                >
-                  Aceptar
-                </button>
-              </>
-            )}
+                    Aceptar
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showConfirmation && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded shadow-lg text-center">
+            <img src="/check.png" alt="Confirmación" className="mx-auto mb-4" />
+            <p className="text-xl font-bold mb-4">Pago realizado con éxito</p>
+            <button
+              className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded"
+              onClick={closeConfirmation}
+            >
+              OK
+            </button>
           </div>
         </div>
       )}

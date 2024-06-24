@@ -109,8 +109,8 @@ const Carrusel = () => {
           {products.slice(currentIndex, currentIndex + 3).map((product) => (
             <div key={product.id} className="flex-shrink-0 w-1/3 text-center p-4">
               <img src={product.imagen} alt={product.titulo} className="mx-auto mb-4 max-h-60 object-contain" />
-              <p className="font-bold">{product.titulo}</p>
-              <button className="bg-orange-400 text-white p-2 rounded my-2">Comprar Ahora</button>
+              <p className="font-bold mb-6">{product.titulo}</p>
+              <NavLink to={`/Producto-Info/${product.id}`} className="bg-orange-400 text-white p-4 rounded my-2">Comprar Ahora</NavLink>
             </div>
           ))}
         </div>

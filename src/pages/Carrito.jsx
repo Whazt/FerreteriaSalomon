@@ -57,6 +57,7 @@ export function Carrito() {
   const [address, setAddress] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showReceipt, setShowReceipt] = useState(false);
   const { user, saveUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -87,6 +88,8 @@ export function Carrito() {
       cart,
       total: subtotal,
       date: new Date().toISOString(),
+      pickupOption,
+      paymentMethod,
     };
 
     // Guardar la venta en el localStorage
@@ -96,12 +99,18 @@ export function Carrito() {
 
     // Mostrar confirmación y limpiar el carrito
     setShowModal(false);
-    setShowConfirmation(true);
+    setShowConfirmation(paymentMethod === 'card');
+    setShowReceipt(paymentMethod !== 'card');
     clearCart();
   };
 
   const closeConfirmation = () => {
     setShowConfirmation(false);
+    setShowReceipt(true);
+  };
+
+  const closeReceipt = () => {
+    setShowReceipt(false);
     window.location.href = '/';
   };
 
@@ -297,6 +306,45 @@ export function Carrito() {
             >
               OK
             </button>
+          </div>
+        </div>
+      )}
+
+      {showReceipt && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded shadow-lg text-center">
+            <button
+              className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"
+              onClick={closeReceipt}
+            >
+              Cerrar
+            </button>
+            <div>
+              <p><strong>No. Pedido:</strong> {Math.floor(Math.random() * 1000000)}</p>
+              <p><strong>{pickupOption === 'store' ? 'Retiro En Tienda' : 'Entrega a Domicilio'}</strong></p>
+              <p><strong>Cliente:</strong> {user.name}</p>
+              <div>
+                <h3 className="font-bold mt-4">Artículos:</h3>
+                <ul className="list-disc list-inside">
+                  {cart.map(item => (
+                    <li key={item.id}>{item.titulo} (x{item.quantity}) - {new Intl.NumberFormat('es-NI', { style: 'currency', currency: 'NIO' }).format(item.precio)}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex justify-between mb-2">
+                <span>Subtotal:</span>
+                <span>{formattedSubtotal}</span>
+              </div>
+              <div className="flex justify-between mb-2">
+                <span>Total (Incluye IVA):</span>
+                <span>{formattedSubtotal}</span>
+              </div>
+              {paymentMethod === 'card' && <p className="font-bold text-green-600">Pagado</p>}
+              {paymentMethod === 'store' && <p className="font-bold text-red-600">Pendiente de Pago</p>}
+              <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded" onClick={closeReceipt}>
+                Descargar Recibo
+              </button>
+            </div>
           </div>
         </div>
       )}

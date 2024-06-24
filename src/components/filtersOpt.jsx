@@ -75,6 +75,7 @@ function FiltersOpt() {
           id={categoryFilterId}
           name="category"
           onChange={handleChangeCategory}
+          value={filters.category} // Asegúrate de que el valor del select esté sincronizado con el estado
           className="p-2 border border-gray-300 rounded-lg w-full"
         >
           <option value="all">Todas</option>

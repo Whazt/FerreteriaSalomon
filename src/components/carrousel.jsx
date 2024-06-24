@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Importa los estilos del carrusel
 import { products as productsData } from '../mocks/products'; // Importa el archivo JSON
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useFilters } from '../hooks/useFilters';
 
 const Carrusel = () => {
+  const { filters, setFilters } = useFilters();
   const [products, setProducts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedProducts = localStorage.getItem('products');
@@ -28,6 +31,11 @@ const Carrusel = () => {
       setProducts(productsData);
     }
   }, []);
+
+  const handleCategory = (cat) => {
+    setFilters({ ...filters, category: cat });
+    navigate('/Categorias');
+  };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
@@ -60,32 +68,32 @@ const Carrusel = () => {
       <h2 className="text-2xl font-bold mt-8 mb-4">Categorías</h2>
       <div className="grid grid-cols-5 gap-4">
         <div className="text-center">
-          <button className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
+          <button onClick={() => handleCategory('hmanual')} className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
             <img src="/hammer.svg" alt="Martillo" className="size-18 text-orange-400 rounded-lg" />
           </button>
           <p className="text-orange-400">Herramientas Manuales</p>
         </div>
         <div className="text-center">
-          <button className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
-            <img src="/drill.svg" alt="Martillo" className="size-18 text-orange-400 rounded-lg" />
+          <button onClick={() => handleCategory('helectrica')} className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
+            <img src="/drill.svg" alt="Taladro" className="size-18 text-orange-400 rounded-lg" />
           </button>
           <p className="text-orange-400">Herramientas Electrícas</p>
         </div>
         <div className="text-center">
-          <button className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
-            <img src="/paint.svg" alt="Martillo" className="text-orange-400 rounded-lg" />
+          <button onClick={() => handleCategory('pint')} className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
+            <img src="/paint.svg" alt="Pintura" className="text-orange-400 rounded-lg" />
           </button>
           <p className="text-orange-400">Pintura</p>
         </div>
         <div className="text-center">
-          <button className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
-            <img src="/plumb.svg" alt="Martillo" className="size-18 text-orange-400 rounded-lg" />
+          <button onClick={() => handleCategory('font')} className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
+            <img src="/plumb.svg" alt="Fontanería" className="size-18 text-orange-400 rounded-lg" />
           </button>
           <p className="text-orange-400">Fontanería</p>
         </div>
         <div className="text-center">
-          <button className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
-            <img src="/wall.svg" alt="Martillo" className="size-18 text-orange-400 rounded-lg" />
+          <button onClick={() => handleCategory('construccion')} className="rounded-full p-2 border-2 border-orange-400 hover:bg-orange-200">
+            <img src="/wall.svg" alt="Construcción" className="size-18 text-orange-400 rounded-lg" />
           </button>
           <p className="text-orange-400">Construcción</p>
         </div>

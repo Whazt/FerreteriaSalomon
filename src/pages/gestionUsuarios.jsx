@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { users as initialUsers } from '../mocks/users.json';
+import { TrashIcon, EditIcon, AddIcon } from '../components/icons';
 
 const GestionarUsuarios = () => {
   const [users, setUsers] = useState([]);
@@ -59,7 +60,7 @@ const GestionarUsuarios = () => {
       <div className="flex justify-between items-center my-4">
         <h1 className="text-2xl font-bold">Usuarios</h1>
         <div>
-          <button onClick={() => setIsModalOpen(true)} className="btn btn-primary bg-blue-500 text-white px-4 py-2 rounded">Añadir Usuario</button>
+          <button onClick={() => setIsModalOpen(true)} className="flex gap-2  bg-blue-500 text-white px-4 py-2 rounded"><AddIcon  /> Agregar</button>
         </div>
       </div>
       <div className="space-y-4">
@@ -73,8 +74,8 @@ const GestionarUsuarios = () => {
               <p><strong>Tipo:</strong> {user.type}</p>
             </div>
             <div>
-              <button onClick={() => handleEditUser(user.id)} className="btn btn-secondary bg-yellow-500 text-white px-4 py-2 rounded mr-2">Modificar</button>
-              <button onClick={() => handleDeleteUser(user.id)} className="btn btn-danger bg-red-500 text-white px-4 py-2 rounded">Eliminar</button>
+              <button onClick={() => handleEditUser(user.id)} className="btn btn-secondary bg-yellow-500 text-white px-4 py-2 rounded mr-2"><EditIcon /></button>
+              <button onClick={() => handleDeleteUser(user.id)} className="btn btn-danger bg-red-500 text-white px-4 py-2 rounded"><TrashIcon /></button>
             </div>
           </div>
         ))}

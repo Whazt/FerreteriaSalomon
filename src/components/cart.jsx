@@ -45,7 +45,7 @@ function CartItem({ titulo, precio, imagen, quantity, addToCart, removeFromCart 
   }
 
   export function Cart() {
-    const { cart, addToCart, removeFromCart, clearCart } = useCart();
+    const { cart, addToCart, removeFromCart, clearCart, decreaseFromCart } = useCart();
     const cartCheckId = useId();
     const [checked, setChecked] = useState(false);
   
@@ -75,8 +75,8 @@ function CartItem({ titulo, precio, imagen, quantity, addToCart, removeFromCart 
             {cart.map((product) => (
               <CartItem
                 key={product.id}
-                removeFromCart={() => removeFromCart(product)}
-                addToCart={() => addToCart(product)}
+                removeFromCart={() => decreaseFromCart(product)}
+                addToCart={() => addToCart(product, 1)}
                 {...product}
               />
             ))}

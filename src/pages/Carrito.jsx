@@ -57,7 +57,7 @@ export function Carrito() {
   const [address, setAddress] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const { user, login } = useContext(UserContext);
+  const { user, saveUser } = useContext(UserContext);
 
   useEffect(() => {
     const newSubtotal = cart.reduce((acc, item) => acc + item.precio * item.quantity, 0);
@@ -76,14 +76,25 @@ export function Carrito() {
   };
 
   const handleLogin = (user) => {
-    login(user);
+    saveUser(user);
     setShowLoginModal(false);
     setShowModal(true);
   };
 
   const handlePayment = () => {
-    // Lógica para generar el recibo
-    console.log('Generando recibo...');
+    const sale = {
+      user,
+      cart,
+      total: subtotal,
+      date: new Date().toISOString(),
+    };
+
+    // Guardar la venta en el localStorage
+    const sales = JSON.parse(localStorage.getItem("sales")) || [];
+    sales.push(sale);
+    localStorage.setItem("sales", JSON.stringify(sales));
+
+    // Mostrar confirmación y limpiar el carrito
     setShowModal(false);
     setShowConfirmation(true);
     clearCart();
@@ -172,7 +183,7 @@ export function Carrito() {
               Cerrar
             </button>
             <div className="text-center mb-4">
-              <img src="/path/to/logo.png" alt="Logo" className="mx-auto" />
+              <img src="/salomonlogo.png" alt="Logo" className="mx-auto" />
             </div>
             <div>
               {pickupOption === 'store' ? (
@@ -210,7 +221,7 @@ export function Carrito() {
                     <span>{formattedSubtotal}</span>
                   </div>
                   <button
-                    className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded mt-4"
+                    className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded mt-4"
                     onClick={handlePayment}
                   >
                     Aceptar

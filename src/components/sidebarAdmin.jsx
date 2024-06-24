@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useUser } from '../hooks/useUser';
-import { UsersGestIcon, VentasIcon, ProductIcon } from './icons';
+import { UsersGestIcon, VentasIcon, ProductIcon, LogoutIcon } from './icons';
 
 const SidebarAdmin = () => {
   const { logout } = useUser();
@@ -36,9 +36,9 @@ const SidebarAdmin = () => {
       <div className="p-4">
         <button
           onClick={logout}
-          className="w-full py-2 bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded"
+          className="w-full gap-2 flex py-2 items-center justify-center bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded"
         >
-          Logout
+          <LogoutIcon/>Logout
         </button>
       </div>
     </div>

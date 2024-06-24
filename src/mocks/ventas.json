@@ -1,0 +1,52 @@
+{
+    "ventas": [
+      {
+        "user": {
+          "nombre": "John Doe",
+          "email": "johndoe@example.com"
+        },
+        "cart": [
+          {
+            "id": "0001",
+            "titulo": "JUEGO DE DESARMADORES HYPER TOUGH 6 PIEZAS",
+            "marca": "HYPER TOUGH",
+            "imagen": "/JuegoDesarmadores.png",
+            "categoria": "hmanual",
+            "precio": 300.50,
+            "quantity": 2
+          },
+          {
+            "id": "0002",
+            "titulo": "ROTOMARTILLO SDS PLUS 4 JOULES 1000W, TRUPER EXPERT",
+            "marca": "TRUPER EXPERT",
+            "imagen": "/RPLUS-4NX.jpg",
+            "categoria": "helectrica",
+            "precio": 10525.50,
+            "quantity": 1
+          }
+        ],
+        "total": 11126.50,
+        "date": "2024-06-24T14:48:00.000Z"
+      },
+      {
+        "user": {
+          "nombre": "Jane Smith",
+          "email": "janesmith@example.com"
+        },
+        "cart": [
+          {
+            "id": "0003",
+            "titulo": "CINTA METRICA GLOBAL PLUS 1″X8M 30-626, STANLEY",
+            "marca": "STANLEY",
+            "imagen": "/stanleycinta.jpg",
+            "categoria": "hmanual",
+            "precio": 350.50,
+            "quantity": 4
+          }
+        ],
+        "total": 1402.00,
+        "date": "2024-06-25T10:15:00.000Z"
+      }
+    ]
+  }
+  

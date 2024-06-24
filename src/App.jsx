@@ -5,7 +5,7 @@ import Products from "./pages/products";
 import Nosotros from "./pages/nosotros";
 import Contact from "./pages/contact";
 import ProductInfo from "./pages/productInfo";
-import {Carrito} from "./pages/Carrito";
+import { Carrito } from "./pages/Carrito";
 import { AdminPanel } from "./pages/adminPanel";
 import { FiltersProvider } from "./context/filters";
 import { CartProvider } from "./context/cartcontext";
@@ -17,21 +17,9 @@ function AppContent() {
   const location = useLocation();
   const isAdminPanel = location.pathname.startsWith('/Admin-Panel');
 
-  if (isAdminPanel) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/Admin-Panel/*" element={<ProtectedRoute element={<AdminPanel />} />} />
-          </Routes>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      {!isAdminPanel && <Navbar />}
       <div className="flex-grow">
         <Routes>
           <Route path="/" element={<Inicio />} />
@@ -40,11 +28,10 @@ function AppContent() {
           <Route path="/Producto-Info/:id" element={<ProductInfo />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Carrito" element={<Carrito />} />
+          <Route path="/Admin-Panel/*" element={<ProtectedRoute element={<AdminPanel />} />} />
         </Routes>
       </div>
-      <footer>
-        <Footer />
-      </footer>
+      {!isAdminPanel && <Footer />}
     </div>
   );
 }

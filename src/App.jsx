@@ -5,6 +5,7 @@ import Products from "./pages/products";
 import Nosotros from "./pages/nosotros";
 import Contact from "./pages/contact";
 import ProductInfo from "./pages/productInfo";
+import {Carrito} from "./pages/Carrito";
 import { AdminPanel } from "./pages/adminPanel";
 import { FiltersProvider } from "./context/filters";
 import { CartProvider } from "./context/cartcontext";
@@ -36,6 +37,7 @@ function AppContent() {
           <Route path="/Nosotros" element={<Nosotros />} />
           <Route path="/Producto-Info/:id" element={<ProductInfo />} />
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/Carrito" element={<Carrito />} />
         </Routes>
       </div>
       <footer>

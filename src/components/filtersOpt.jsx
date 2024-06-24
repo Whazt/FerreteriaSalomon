@@ -22,7 +22,7 @@ function FiltersOpt(){
     }
 
     return (
-        <section className="filters">
+        <section className="gap-10 flex">
             <div>
                 <label htmlFor={minpriceFilterId} className="label">Precio a partir de: </label>
                 <input 
@@ -35,7 +35,7 @@ function FiltersOpt(){
                 />
                 <span className="text-orange-500">{filters.minprice}</span>
             </div>
-            <div>
+            <div className="gap-2">
                 <label htmlFor={categoryFilterId} className="label">Categoria</label>
                 <select id={categoryFilterId} name="category" onChange={handleChangeCategory}>
                     <option value="all">Todas</option>

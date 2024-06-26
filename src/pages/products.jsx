@@ -5,6 +5,7 @@ import { useFilters } from "../hooks/useFilters";
 import { products as initialProducts } from "../mocks/products.json";
 
 function Products() {
+  
   const { filterProducts } = useFilters();
   const [products, setProducts] = useState([]);
 

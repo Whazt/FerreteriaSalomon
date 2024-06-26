@@ -23,7 +23,7 @@ function CartIcon() {
   );
 }
 
-function CartItem({ titulo, precio, imagen, quantity, addToCart, removeFromCart }) {
+function CartItem({ titulo, precio, imagen, quantity, cantidad, addToCart, removeFromCart }) {
   return (
     <li className="flex items-center p-2 border-b border-gray-200">
       <button className="px-2 text-red-500 text-2xl bg-slate-50 justify-center rounded-2xl" onClick={removeFromCart}>-</button>
@@ -37,12 +37,13 @@ function CartItem({ titulo, precio, imagen, quantity, addToCart, removeFromCart 
           <button className="px-1 text-green-500 text-2xl bg-slate-50 rounded-2xl" onClick={addToCart}>+</button>
         </div>
         <footer className="flex justify-between items-center mt-2">
-          <small className="text-gray-500">Cant: {quantity}</small>
+          <small className="text-gray-500">Cant: {quantity} / Stock: {cantidad}</small>
         </footer>
       </div>
     </li>
   );
 }
+
 
 export function Cart() {
   const { cart, addToCart, clearCart, decreaseFromCart } = useCart();

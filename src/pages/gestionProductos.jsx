@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const GestionProductos = () => {
   const [products, setProducts] = useState([]);
-  const [newProduct, setNewProduct] = useState({ id: '', titulo: '', marca: '', imagen: '', categoria: '', precio: '', descripcion: '', valoraciones: [] });
+  const [newProduct, setNewProduct] = useState({ id: '', titulo: '', marca: '', imagen: '', categoria: '', precio: '', descripcion: '', valoraciones: [], cantidad: '' });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [imageFile, setImageFile] = useState(null);
@@ -34,7 +34,7 @@ const GestionProductos = () => {
   };
 
   const resetForm = () => {
-    setNewProduct({ id: '', titulo: '', marca: '', imagen: '', categoria: '', precio: '', descripcion: '', valoraciones: [] });
+    setNewProduct({ id: '', titulo: '', marca: '', imagen: '', categoria: '', precio: '', descripcion: '', valoraciones: [], cantidad: '' });
     setImageFile(null);
     setImageError(false);
   };
@@ -134,6 +134,7 @@ const GestionProductos = () => {
                 <p><strong>Marca:</strong> {product.marca}</p>
                 <p><strong>Categoría:</strong> {product.categoria}</p>
                 <p><strong>Precio:</strong> {product.precio}</p>
+                <p><strong>Cantidad:</strong> {product.cantidad}</p>
               </div>
             </div>
             <div>
@@ -192,6 +193,13 @@ const GestionProductos = () => {
                 onChange={(e) => setNewProduct({ ...newProduct, descripcion: e.target.value })}
                 className="textarea textarea-bordered w-full border-gray-300 rounded px-4 py-2"
               ></textarea>
+              <input
+                type="number"
+                placeholder="Cantidad"
+                value={newProduct.cantidad}
+                onChange={(e) => setNewProduct({ ...newProduct, cantidad: e.target.value })}
+                className="input input-bordered w-full border-gray-300 rounded px-4 py-2"
+              />
               <div className="flex justify-end">
                 <button onClick={isEditing ? handleUpdateProduct : handleAddProduct} className="btn btn-primary bg-blue-500 text-white px-4 py-2 rounded">
                   {isEditing ? 'Guardar Cambios' : 'Añadir Producto'}

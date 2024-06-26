@@ -153,23 +153,26 @@ export function Carrito() {
             <span>{formattedSubtotal}</span>
           </div>
           <div>
-            <button
-              className="w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded mb-4"
-              onClick={clearCart}
-            >
-              Limpiar Carrito
-            </button>
-            <NavLink
-              to="/"
-              className="block w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded mb-4 text-center"
-            >
-              Continuar Comprando
-            </NavLink>
-            <button
-              className="block w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded text-center"
+          <button
+              className="block w-full bg-orange-400 hover:bg-orange-500 text-white py-2 mb-4 rounded text-center"
               onClick={handleCheckout}
             >
               Ir a Pagar
+            </button>
+            <NavLink
+              to="/"
+              className="block w-full bg-orange-400 hover:bg-orange-500 text-white py-2 rounded mb-12 text-center"
+            >
+              Continuar Comprando
+            </NavLink>
+            
+          </div>
+          <div>
+          <button
+              className="w-full bg-gray-600 hover:bg-gray-700 text-white py-2 rounded mt-12"
+              onClick={clearCart}
+            >
+              Limpiar Carrito
             </button>
           </div>
         </div>

@@ -1,4 +1,3 @@
-
 export const cartInitialState = JSON.parse(localStorage.getItem("cart")) || [];
 
 export const CART_ACTION_TYPES = {
@@ -17,26 +16,35 @@ export const cartReducer = (state, action) => {
 
     switch (actionType) {
         case CART_ACTION_TYPES.ADD_TO_CART: {
-            const { id, quantity } = actionPayload;
+            const { id, quantity, cantidad } = actionPayload;  // Añadir 'cantidad'
             const productInCartIndex = state.findIndex(item => item.id === id);
 
             if (productInCartIndex >= 0) {
                 const newState = structuredClone(state);
-                newState[productInCartIndex].quantity += quantity;
-                updateLocalStorage(newState);
-                return newState;
+                if (newState[productInCartIndex].quantity + quantity <= cantidad) {
+                    newState[productInCartIndex].quantity += quantity;
+                    updateLocalStorage(newState);
+                    return newState;
+                } else {
+                    alert("No hay suficiente stock disponible");
+                    return state;
+                }
             }
 
-            const newState = [
-                ...state,
-                {
-                    ...actionPayload,
-                    quantity: quantity
-                }
-            ];
-
-            updateLocalStorage(newState);
-            return newState;
+            if (quantity <= cantidad) {
+                const newState = [
+                    ...state,
+                    {
+                        ...actionPayload,
+                        quantity: quantity
+                    }
+                ];
+                updateLocalStorage(newState);
+                return newState;
+            } else {
+                alert("No hay suficiente stock disponible");
+                return state;
+            }
         }
         case CART_ACTION_TYPES.REMOVE_FROM_CART: {
             const { id } = actionPayload;

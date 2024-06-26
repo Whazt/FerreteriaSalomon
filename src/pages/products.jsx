@@ -10,12 +10,12 @@ function Products() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Verifica si los productos ya están en el localStorage
+    
     const storedProducts = localStorage.getItem("products");
     if (storedProducts) {
       setProducts(JSON.parse(storedProducts));
     } else {
-      // Si no están, carga los productos del archivo JSON y guárdalos en el localStorage
+      
       localStorage.setItem("products", JSON.stringify(initialProducts));
       setProducts(initialProducts);
     }
